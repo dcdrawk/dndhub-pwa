@@ -1,21 +1,18 @@
 <template>
-  <v-app>
-    <navigation-drawer></navigation-drawer>
-    <toolbar></toolbar>
+  <v-app toolbar>
+    <navigation-drawer
+      :open="navOpen"
+      @toggle="navOpen = !navOpen"
+    ></navigation-drawer>
+    <toolbar
+      @toggle="navOpen = !navOpen"
+    ></toolbar>
     <main>
+      {{ navOpen }}
       <v-container fluid>
         <router-view></router-view>
-        <v-list>
-      <!-- <v-list-tile v-for="item in menu" :key="item.title">
-        Test
-      </v-list-tile> -->
-      <v-list-tile class="test">
-        Test
-      </v-list-tile>
-    </v-list>
       </v-container>
     </main>
-    <v-footer></v-footer>
   </v-app>
 </template>
 
@@ -43,7 +40,7 @@ export default {
   // Data
   data () {
     return {
-      msg: 'Hello World'
+      navOpen: true
     }
   },
 
@@ -54,7 +51,11 @@ export default {
   watch: {},
 
   // Methods
-  methods: {},
+  methods: {
+    toggle () {
+      console.log('toggle')
+    }
+  },
 
   // Created
   created () {},

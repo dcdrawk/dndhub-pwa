@@ -1,8 +1,11 @@
 <template>
   <v-navigation-drawer
-    class="pa-0"
-    permanent
+    persistent
+    :value="open"
     light
+    enable-resize-watcher
+    overflow
+    @input.prevent="$emit('toggle', $event)"
   >
     <v-list dense class="pt-2">
       <v-list-group
@@ -29,23 +32,26 @@
 
 <script>
 /**
- * <component></component>
+ * <navigation-drawer></navigation-drawer>
  * Component
  * @desc description
  */
 export default {
   // Name
-  name: 'component',
+  name: 'navigation-drawer',
 
   // Components
   components: {},
 
   // Props
-  props: {},
+  props: {
+    open: Boolean
+  },
 
   // Data
   data () {
     return {
+      show: true,
       menu: [{
         title: 'Sign In',
         icon: 'person',
@@ -63,7 +69,11 @@ export default {
   },
 
   // Computed
-  computed: {},
+  computed: {
+    // show () {
+    //   return this.open
+    // }
+  },
 
   // Watch
   watch: {},

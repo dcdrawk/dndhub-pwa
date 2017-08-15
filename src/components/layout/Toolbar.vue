@@ -1,8 +1,9 @@
 <template>
   <v-toolbar dark class="primary">
-    <v-toolbar-side-icon></v-toolbar-side-icon>
+    <v-toolbar-side-icon
+      @click.stop="$emit('toggle')"
+    ></v-toolbar-side-icon>
     <v-toolbar-title class="white--text">DnDHub</v-toolbar-title>
-    <!-- Test -->
   </v-toolbar>
 </template>
 
