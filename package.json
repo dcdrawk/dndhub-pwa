@@ -11,8 +11,11 @@
     "lint": "eslint --ext .js,.vue src"
   },
   "dependencies": {
+    "node-sass": "^4.5.3",
+    "sass-loader": "^6.0.6",
     "vue": "^2.3.3",
-    "vue-router": "^2.3.1"
+    "vue-router": "^2.3.1",
+    "vuetify": "^0.14.11"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",

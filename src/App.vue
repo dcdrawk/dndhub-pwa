@@ -5,14 +5,23 @@
     </header>
     <main>
       <img src="./assets/logo.png" alt="Vue.js PWA">
-      <router-view></router-view>
+
+      <shell></shell>
     </main>
   </div>
 </template>
 
 <script>
+import Shell from './components/layout/Shell'
+
 export default {
-  name: 'app'
+  // Name
+  name: 'app',
+
+  // Components
+  components: {
+    Shell
+  }
 }
 </script>
 
