@@ -2,7 +2,7 @@
   <div>
     <v-card>
       <v-card-title primary-title>
-        <h3 class="headline mb-0">Sign In</h3>
+        <h3 class="headline mb-0">Sign Up</h3>
       </v-card-title>
       <v-card-text>
         <v-layout row wrap>
@@ -14,6 +14,7 @@
               label="Email"
               v-model="email"
               v-validate="'required'"
+              autocomplete="false"
               :error-messages="getError('email')"
             ></v-text-field>
           </v-flex>
@@ -24,25 +25,35 @@
               class="pb-0"
               name="password"
               label="Password"
-              id="testing"
               type="password"
               v-model="password"
-              v-validate="'required'"
+              v-validate="'required|confirmed:confirm_password'"
+              autocomplete="false"
               :error-messages="getError('password')"
             ></v-text-field>
           </v-flex>
+
+          <!-- Confirm Password -->
+          <v-flex xs12>
+            <v-text-field
+              class="pb-0"
+              name="confirm_password"
+              label="Confirm Password"
+              type="password"
+              v-model="confirmPassword"
+              v-validate="'required'"
+              :error-messages="getError('confirm_password')"
+              autocomplete="false"
+            ></v-text-field>
+          </v-flex>
+
         </v-layout>
       </v-card-text>
 
       <v-card-actions>
         <v-btn
           class="primary"
-          @click="login()"
-        >
-          Sign In
-        </v-btn>
-        <v-btn
-          flat
+          @click="signup()"
         >
           Sign Up
         </v-btn>
@@ -55,30 +66,32 @@
 
 <script>
 /**
- * <sign-in></sign-in>
- * @desc User can sign in to firebase
+ * <sign-up></sign-up>
+ * @desc User can sign up for dndhub
  */
 export default {
   // Name
-  name: 'sign-in',
+  name: 'sign-up',
 
   // Data
   data () {
     return {
       email: undefined,
-      password: undefined
+      password: undefined,
+      confirmPassword: undefined
     }
   },
 
   // Methods
   methods: {
-    async login () {
+    async signup () {
       try {
         const valid = await this.$validator.validate()
+        console.log(this.$validator)
         if (!valid) { throw this.errors.all() }
         const data = await this.$firebase.auth()
-        .signInWithEmailAndPassword(this.email, this.password)
-        this.$bus.$emit('toast', `Signed in as ${data.email}`)
+        .createUserWithEmailAndPassword(this.email, this.password)
+        this.$bus.$emit('toast', `Created the user ${data.email}`)
       } catch (error) {
         console.warn(error)
       }

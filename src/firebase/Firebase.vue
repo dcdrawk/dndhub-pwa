@@ -42,6 +42,7 @@ export default {
       } else {
         console.log('No User.')
       }
+      this.$store.commit('update_user', user)
     })
   }
 }

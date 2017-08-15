@@ -8,7 +8,7 @@
       @toggle="navOpen = !navOpen"
     ></toolbar>
     <main>
-      <v-container fluid>
+      <v-container class="dnd-container">
         <router-view></router-view>
       </v-container>
     </main>
@@ -75,4 +75,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+@media screen and (max-width: 480px) {
+  .dnd-container {
+    padding: 0;
+  }
+}
 </style>

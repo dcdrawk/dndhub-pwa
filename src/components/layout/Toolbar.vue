@@ -1,49 +1,67 @@
 <template>
-  <v-toolbar dark class="primary">
+  <!-- Toolbar -->
+  <v-toolbar dark dense class="primary">
+
+    <!-- Toolbar Menu Icon -->
     <v-toolbar-side-icon
       @click.stop="$emit('toggle')"
     ></v-toolbar-side-icon>
-    <v-toolbar-title class="white--text">DnDHub</v-toolbar-title>
+
+    <!-- Title -->
+    <v-toolbar-title class="white--text">
+      DnD Hub - {{$router.currentRoute.name}}
+    </v-toolbar-title>
+
+    <!-- Spaces -->
+    <v-spacer></v-spacer>
+    <v-menu v-if="user" class="mr-2" bottom left>
+      <v-btn icon slot="activator">
+        <v-icon >more_vert</v-icon>
+      </v-btn>
+      <!-- <v-btn primary dark slot="activator">Dropdown</v-btn> -->
+      <v-list>
+        <v-list-tile
+          @click="signout"
+        >
+          <v-list-tile-action>
+            <v-icon>
+              exit_to_app
+            </v-icon>
+          </v-list-tile-action>
+          <v-list-tile-title>
+            Sign Out
+          </v-list-tile-title>
+        </v-list-tile>
+      </v-list>
+    </v-menu>
   </v-toolbar>
 </template>
 
 <script>
 /**
- * <component></component>
- * Component
- * @desc description
+ * <toolbar></toolbar>
+ * @desc toolbar, has user signout menu (if logged in)
  */
 export default {
   // Name
-  name: 'component',
-
-  // Components
-  components: {},
-
-  // Props
-  props: {},
-
-  // Data
-  data () {
-    return {
-      msg: 'Hello World'
-    }
-  },
+  name: 'toolbar',
 
   // Computed
-  computed: {},
-
-  // Watch
-  watch: {},
+  computed: {
+    user () { return this.$store.state.user }
+  },
 
   // Methods
-  methods: {},
-
-  // Created
-  created () {},
-
-  // Mounted
-  mounted () {}
+  methods: {
+    async signout () {
+      try {
+        await this.$firebase.auth().signOut()
+        this.$bus.$emit('toast', 'Signed out successfully.')
+      } catch (error) {
+        console.warn(error)
+      }
+    }
+  }
 }
 </script>
 
