@@ -1,4 +1,5 @@
 <template>
+  <div>
   <!-- Card -->
   <v-card>
 
@@ -7,6 +8,7 @@
       <h3 class="headline ma-0">Characters</h3>
     </v-card-title>
 
+    <!-- Character List -->
     <v-list two-line dense>
       <v-list-tile
         class="character-list-tile"
@@ -15,7 +17,7 @@
         :key="index"
         @click.stop.prevent="selectCharacter(index)"
       >
-        <!-- class="primary" -->
+        <!-- List tile actions -->
         <v-list-tile-action>
           <v-radio
             class="ml-2"
@@ -26,6 +28,7 @@
           ></v-radio>
         </v-list-tile-action>
 
+        <!-- List tile content -->
         <v-list-tile-content>
           <v-list-tile-title>{{ item.name }}</v-list-tile-title>
           <v-list-tile-sub-title>
@@ -35,6 +38,19 @@
       </v-list-tile>
     </v-list>
   </v-card>
+    <v-fab-transition>
+      <v-btn
+        class="teal"
+        dark
+        fab
+        fixed
+        bottom
+        right
+      >
+        <v-icon>add</v-icon>
+      </v-btn>
+    </v-fab-transition>
+  </div>
 </template>
 
 <script>
