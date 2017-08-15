@@ -2,17 +2,19 @@
   <v-app toolbar>
     <navigation-drawer
       :open="navOpen"
-      @toggle="navOpen = !navOpen"
+      @toggle="navOpen = $event"
     ></navigation-drawer>
     <toolbar
       @toggle="navOpen = !navOpen"
     ></toolbar>
     <main>
-      {{ navOpen }}
       <v-container fluid>
         <router-view></router-view>
       </v-container>
     </main>
+
+    <!-- Firebase -->
+    <firebase></firebase>
   </v-app>
 </template>
 
@@ -21,6 +23,7 @@
  * <shell></shell>
  * @desc Contains all the pieces of the app
  */
+import Firebase from '../../firebase/Firebase'
 import Toolbar from './Toolbar'
 import NavigationDrawer from './NavigationDrawer'
 
@@ -30,6 +33,7 @@ export default {
 
   // Components
   components: {
+    Firebase,
     Toolbar,
     NavigationDrawer
   },

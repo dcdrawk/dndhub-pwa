@@ -5,7 +5,7 @@
     light
     enable-resize-watcher
     overflow
-    @input.prevent="$emit('toggle', $event)"
+    @input="$emit('toggle', $event)"
   >
     <v-list dense class="pt-2">
       <v-list-group
