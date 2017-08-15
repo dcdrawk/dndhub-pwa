@@ -1,13 +1,13 @@
 <template>
   <div id="app">
-    <header>
+    <!-- <header>
       <span>Vue.js PWA</span>
-    </header>
-    <main>
-      <img src="./assets/logo.png" alt="Vue.js PWA">
+    </header> -->
+    <!-- <main> -->
+      <!-- <img src="./assets/logo.png" alt="Vue.js PWA"> -->
 
-      <shell></shell>
-    </main>
+    <shell></shell>
+    <!-- </main> -->
   </div>
 </template>
 
@@ -26,18 +26,24 @@ export default {
 </script>
 
 <style>
-body {
-  margin: 0;
+li {
+  list-style: none;
 }
+/* body {
+  margin: 0;
+} */
+/* *, :after, :before { */
+  /* box-sizing: border-box;
+} */
 
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+/* #app { */
+  /* font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  color: #2c3e50;
-}
+  color: #2c3e50; */
+/* } */
 
-main {
+/* main {
   text-align: center;
   margin-top: 40px;
 }
@@ -59,5 +65,5 @@ header span {
   font-weight: 400;
   box-sizing: border-box;
   padding-top: 16px;
-}
+} */
 </style>
