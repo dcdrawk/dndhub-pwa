@@ -18,6 +18,9 @@
 
     <!-- Firebase -->
     <firebase></firebase>
+
+    <!-- Game Data -->
+    <game-data></game-data>
   </v-app>
 </template>
 
@@ -30,6 +33,7 @@ import Firebase from '../../firebase/Firebase'
 import DndToaster from '../toast/DndToaster'
 import Toolbar from './Toolbar'
 import NavigationDrawer from './NavigationDrawer'
+import GameData from '../game-data/GameData'
 
 export default {
   // Name
@@ -40,7 +44,8 @@ export default {
     Firebase,
     Toolbar,
     NavigationDrawer,
-    DndToaster
+    DndToaster,
+    GameData
   },
 
   // Props
