@@ -67,6 +67,10 @@ export default {
         title: 'Profile',
         icon: 'account_circle',
         href: '/profile'
+      }, {
+        title: 'Characters',
+        icon: 'view_list',
+        href: '/characters'
       }]
     }
   },
