@@ -12,6 +12,9 @@
               class="pb-0"
               name="email"
               label="Email"
+              v-model="email"
+              v-validate="'required'"
+              :error-messages="getError('email')"
             ></v-text-field>
           </v-flex>
 
@@ -23,14 +26,26 @@
               label="Password"
               id="testing"
               type="password"
+              v-model="password"
+              v-validate="'required'"
+              :error-messages="getError('password')"
             ></v-text-field>
           </v-flex>
         </v-layout>
       </v-card-text>
 
       <v-card-actions>
-        <v-btn class="primary">Sign In</v-btn>
-        <v-btn flat>Sign Up</v-btn>
+        <v-btn
+          class="primary"
+          @click="login()"
+        >
+          Sign In
+        </v-btn>
+        <v-btn
+          flat
+        >
+          Sign Up
+        </v-btn>
         <!-- <v-btn flat class="orange--text">Explore</v-btn> -->
       </v-card-actions>
 
@@ -56,7 +71,8 @@ export default {
   // Data
   data () {
     return {
-      msg: 'Hello World'
+      email: undefined,
+      password: undefined
     }
   },
 
@@ -67,7 +83,25 @@ export default {
   watch: {},
 
   // Methods
-  methods: {},
+  methods: {
+    async login () {
+      try {
+        const valid = await this.$validator.validate()
+        if (!valid) { throw this.$validator.all() }
+        const data = await this.$firebase.auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        // console.log(test)
+        this.$bus.$emit('toast', `Signed in as ${data.email}`)
+      } catch (error) {
+        // console.warn(error)
+      }
+    },
+
+    getError (field) {
+      const error = this.errors.first(field)
+      return error ? [error] : undefined
+    }
+  },
 
   // Created
   created () {},

@@ -13,6 +13,9 @@
       </v-container>
     </main>
 
+    <!-- Toaster -->
+    <dnd-toaster></dnd-toaster>
+
     <!-- Firebase -->
     <firebase></firebase>
   </v-app>
@@ -24,6 +27,7 @@
  * @desc Contains all the pieces of the app
  */
 import Firebase from '../../firebase/Firebase'
+import DndToaster from '../toast/DndToaster'
 import Toolbar from './Toolbar'
 import NavigationDrawer from './NavigationDrawer'
 
@@ -35,7 +39,8 @@ export default {
   components: {
     Firebase,
     Toolbar,
-    NavigationDrawer
+    NavigationDrawer,
+    DndToaster
   },
 
   // Props
