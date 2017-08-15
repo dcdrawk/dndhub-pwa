@@ -78,6 +78,7 @@ export default {
         if (!valid) { throw this.errors.all() }
         const data = await this.$firebase.auth()
         .signInWithEmailAndPassword(this.email, this.password)
+        this.$router.push('/profile')
         this.$bus.$emit('toast', `Signed in as ${data.email}`)
       } catch (error) {
         console.warn(error)

@@ -9,7 +9,7 @@
 
     <!-- Title -->
     <v-toolbar-title class="white--text">
-      DnD Hub - {{$router.currentRoute.name}}
+      DnD Hub - {{$route.name}}
     </v-toolbar-title>
 
     <!-- Spaces -->
@@ -56,6 +56,7 @@ export default {
     async signout () {
       try {
         await this.$firebase.auth().signOut()
+        this.$router.push('/sign-in')
         this.$bus.$emit('toast', 'Signed out successfully.')
       } catch (error) {
         console.warn(error)

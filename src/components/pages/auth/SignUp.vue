@@ -57,7 +57,6 @@
         >
           Sign Up
         </v-btn>
-        <!-- <v-btn flat class="orange--text">Explore</v-btn> -->
       </v-card-actions>
 
     </v-card>
@@ -69,9 +68,14 @@
  * <sign-up></sign-up>
  * @desc User can sign up for dndhub
  */
+import Validation from '../../../mixins/Validation'
+
 export default {
   // Name
   name: 'sign-up',
+
+  // Mixins
+  mixins: [Validation],
 
   // Data
   data () {
@@ -87,7 +91,6 @@ export default {
     async signup () {
       try {
         const valid = await this.$validator.validate()
-        console.log(this.$validator)
         if (!valid) { throw this.errors.all() }
         const data = await this.$firebase.auth()
         .createUserWithEmailAndPassword(this.email, this.password)
@@ -95,12 +98,12 @@ export default {
       } catch (error) {
         console.warn(error)
       }
-    },
-
-    getError (field) {
-      const error = this.errors.first(field)
-      return error ? [error] : undefined
     }
+
+    // getError (field) {
+    //   const error = this.errors.first(field)
+    //   return error ? [error] : undefined
+    // }
   }
 }
 </script>

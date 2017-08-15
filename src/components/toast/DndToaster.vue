@@ -5,7 +5,7 @@
     v-model="dataShow"
   >
     {{ dataText }}
-    <v-btn flat class="blue--text" @click.native="dataShow = false">Close</v-btn>
+    <v-btn flat small class="blue--text" @click.native="dataShow = false">Close</v-btn>
   </v-snackbar>
 </template>
 
@@ -56,7 +56,7 @@ export default {
         } else {
           this.processingQueue = false
         }
-      }, this.duration || 3000)
+      }, this.duration || 10000)
     }
   }
 }

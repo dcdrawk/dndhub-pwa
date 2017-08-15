@@ -52,27 +52,35 @@ export default {
   data () {
     return {
       show: true,
-      menu: [{
+      defaultMenu: [{
         title: 'Sign In',
         icon: 'person',
         href: '/sign-in',
         active: false
-        // children: [{}]
       }, {
         title: 'Sign Up',
         icon: 'assignment',
         href: '/sign-up',
         active: false
-        // children: [{}]
+      }],
+      userMenu: [{
+        title: 'Profile',
+        icon: 'account_circle',
+        href: '/profile'
       }]
     }
   },
 
   // Computed
   computed: {
-    // show () {
-    //   return this.open
-    // }
+    menu () {
+      return this.user
+        ? this.userMenu
+        : this.defaultMenu
+    },
+    user () {
+      return this.$store.state.user
+    }
   },
 
   // Watch
