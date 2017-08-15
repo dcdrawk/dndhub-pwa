@@ -33,7 +33,7 @@ import NavigationDrawer from './NavigationDrawer'
 
 export default {
   // Name
-  name: 'component',
+  name: 'shell',
 
   // Components
   components: {
@@ -51,26 +51,7 @@ export default {
     return {
       navOpen: true
     }
-  },
-
-  // Computed
-  computed: {},
-
-  // Watch
-  watch: {},
-
-  // Methods
-  methods: {
-    toggle () {
-      console.log('toggle')
-    }
-  },
-
-  // Created
-  created () {},
-
-  // Mounted
-  mounted () {}
+  }
 }
 </script>
 

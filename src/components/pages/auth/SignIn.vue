@@ -1,56 +1,59 @@
 <template>
-  <div>
-    <v-card>
-      <v-card-title primary-title>
-        <h3 class="headline mb-0">Sign In</h3>
-      </v-card-title>
-      <v-card-text>
-        <v-layout row wrap>
-          <!-- Email -->
-          <v-flex xs12>
-            <v-text-field
-              class="pb-0"
-              name="email"
-              label="Email"
-              v-model="email"
-              v-validate="'required'"
-              :error-messages="getError('email')"
-            ></v-text-field>
-          </v-flex>
+  <!-- Card -->
+  <v-card>
+    <!-- Card Title -->
+    <v-card-title primary-title>
+      <h3 class="headline mb-0">Sign In</h3>
+    </v-card-title>
 
-          <!-- Password -->
-          <v-flex xs12>
-            <v-text-field
-              class="pb-0"
-              name="password"
-              label="Password"
-              id="testing"
-              type="password"
-              v-model="password"
-              v-validate="'required'"
-              :error-messages="getError('password')"
-            ></v-text-field>
-          </v-flex>
-        </v-layout>
-      </v-card-text>
+    <!-- Card Text -->
+    <v-card-text>
+      <v-layout row wrap>
+        <!-- Email -->
+        <v-flex xs12>
+          <v-text-field
+            class="pb-0"
+            name="email"
+            label="Email"
+            v-model="email"
+            v-validate="'required'"
+            :error-messages="getError('email')"
+          ></v-text-field>
+        </v-flex>
 
-      <v-card-actions>
-        <v-btn
-          class="primary"
-          @click="login()"
-        >
-          Sign In
-        </v-btn>
-        <v-btn
-          flat
-        >
-          Sign Up
-        </v-btn>
-        <!-- <v-btn flat class="orange--text">Explore</v-btn> -->
-      </v-card-actions>
+        <!-- Password -->
+        <v-flex xs12>
+          <v-text-field
+            class="pb-0"
+            name="password"
+            label="Password"
+            id="testing"
+            type="password"
+            v-model="password"
+            v-validate="'required'"
+            :error-messages="getError('password')"
+          ></v-text-field>
+        </v-flex>
+      </v-layout>
+    </v-card-text>
 
-    </v-card>
-  </div>
+    <!-- Card Actions -->
+    <v-card-actions>
+      <v-btn
+        class="primary"
+        @click="login()"
+        :loading="loading"
+      >
+        Sign In
+      </v-btn>
+      <v-btn
+        flat
+        to="/sign-up"
+      >
+        Sign Up
+      </v-btn>
+    </v-card-actions>
+  </v-card>
 </template>
 
 <script>
@@ -58,36 +61,42 @@
  * <sign-in></sign-in>
  * @desc User can sign in to firebase
  */
+import Validation from '../../../mixins/Validation'
 export default {
   // Name
   name: 'sign-in',
+
+  // Mixins
+  mixins: [Validation],
 
   // Data
   data () {
     return {
       email: undefined,
-      password: undefined
+      password: undefined,
+      loading: false
     }
   },
 
   // Methods
   methods: {
+    /**
+     * Login
+     * @desc Sign in to firebase using email / password
+     */
     async login () {
       try {
-        const valid = await this.$validator.validate()
-        if (!valid) { throw this.errors.all() }
+        this.loading = true
+        await this.validate()
         const data = await this.$firebase.auth()
-        .signInWithEmailAndPassword(this.email, this.password)
+          .signInWithEmailAndPassword(this.email, this.password)
         this.$router.push('/profile')
         this.$bus.$emit('toast', `Signed in as ${data.email}`)
       } catch (error) {
         console.warn(error)
+      } finally {
+        this.loading = false
       }
-    },
-
-    getError (field) {
-      const error = this.errors.first(field)
-      return error ? [error] : undefined
     }
   }
 }

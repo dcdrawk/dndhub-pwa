@@ -1,4 +1,5 @@
 <template>
+  <!-- Navigation Drawer -->
   <v-navigation-drawer
     persistent
     :value="open"
@@ -7,12 +8,15 @@
     overflow
     @input="$emit('toggle', $event)"
   >
+    <!-- List -->
     <v-list dense class="pt-2">
+      <!-- List Group -->
       <v-list-group
         v-for="item in menu"
         v-model="item.active"
         :key="item.title"
       >
+        <!-- List Tile -->
         <v-list-tile slot="item" :to="item.href">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -33,15 +37,11 @@
 <script>
 /**
  * <navigation-drawer></navigation-drawer>
- * Component
- * @desc description
+ * @desc Display the proper menu for the user
  */
 export default {
   // Name
   name: 'navigation-drawer',
-
-  // Components
-  components: {},
 
   // Props
   props: {
@@ -81,19 +81,7 @@ export default {
     user () {
       return this.$store.state.user
     }
-  },
-
-  // Watch
-  watch: {},
-
-  // Methods
-  methods: {},
-
-  // Created
-  created () {},
-
-  // Mounted
-  mounted () {}
+  }
 }
 </script>
 

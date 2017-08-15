@@ -12,13 +12,14 @@
       DnD Hub - {{$route.name}}
     </v-toolbar-title>
 
-    <!-- Spaces -->
+    <!-- Spacer -->
     <v-spacer></v-spacer>
+
+    <!-- Logout menu -->
     <v-menu v-if="user" class="mr-2" bottom left>
       <v-btn icon slot="activator">
         <v-icon >more_vert</v-icon>
       </v-btn>
-      <!-- <v-btn primary dark slot="activator">Dropdown</v-btn> -->
       <v-list>
         <v-list-tile
           @click="signout"
@@ -53,6 +54,10 @@ export default {
 
   // Methods
   methods: {
+    /**
+     * Sign out
+     * @desc signs the user out of firebase
+     */
     async signout () {
       try {
         await this.$firebase.auth().signOut()

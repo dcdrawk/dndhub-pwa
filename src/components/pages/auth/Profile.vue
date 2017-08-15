@@ -1,14 +1,14 @@
 <template>
+  <!-- Card -->
   <v-card>
-    <v-progress-linear
-      indeterminate
-      v-if="loading || !user"
-    ></v-progress-linear>
+
+    <!-- Card Title -->
     <v-card-title>
       <h3 class="headline ma-0">Profile</h3>
     </v-card-title>
+
+    <!-- Card Text -->
     <v-card-text v-if="user">
-      <!-- Test -->
       <v-layout row wrap>
         <!-- Email -->
         <v-flex xs12>
@@ -37,7 +37,10 @@
         </v-flex>
       </v-layout>
     </v-card-text>
+
+    <!-- Card Actions -->
     <v-card-actions>
+      <!-- Edit Button -->
       <div v-if="!edit">
         <v-btn
           flat
@@ -47,37 +50,31 @@
           Edit
         </v-btn>
       </div>
+      <!-- Save / Cancel Buttons -->
       <div v-else>
         <v-btn
           class="primary mr-0"
+          :loading="loading"
           @click="updateUser()"
         >
           Save
         </v-btn>
         <v-btn
           flat
+          :disabled="loading"
           @click="cancelEdit()"
         >
           Cancel
         </v-btn>
       </div>
-      </v-card-actions>
+    </v-card-actions>
+
+    <!-- Progress Bar -->
+    <v-progress-linear
+      indeterminate
+      v-if="!user"
+    ></v-progress-linear>
   </v-card>
-  <!-- <v-list two-line subheader>
-    <v-subheader>General</v-subheader>
-    <v-list-tile avatar>
-      <v-list-tile-content>
-        <v-list-tile-title>Profile photo</v-list-tile-title>
-        <v-list-tile-sub-title>Change your Google+ profile photo</v-list-tile-sub-title>
-      </v-list-tile-content>
-    </v-list-tile>
-    <v-list-tile avatar>
-      <v-list-tile-content>
-        <v-list-tile-title>Show your status</v-list-tile-title>
-        <v-list-tile-sub-title>Your status is visible to everyone</v-list-tile-sub-title>
-      </v-list-tile-content>
-    </v-list-tile>
-  </v-list> -->
 </template>
 
 <script>
@@ -93,12 +90,6 @@ export default {
   // Mixins
   mixins: [Validation],
 
-  // Components
-  components: {},
-
-  // Props
-  props: {},
-
   // Data
   data () {
     return {
@@ -113,19 +104,24 @@ export default {
     user () { return this.$store.state.user }
   },
 
-  // Watch
-  watch: {},
-
   // Methods
   methods: {
+    /**
+     * Edit User
+     * @desc copy the user, set edit to true
+     */
     editUser  () {
-      this.edit = true
       this.userCopy = {...this.user}
-      console.log(this.userCopy)
+      this.edit = true
     },
 
+    /**
+     * Update User
+     * @desc update the user in firebase
+     */
     async updateUser () {
       try {
+        this.loading = true
         await this.validate()
         await this.$firebase.auth().currentUser
           .updateProfile(this.userCopy)
@@ -134,19 +130,19 @@ export default {
         this.edit = false
       } catch (error) {
         console.warn(error)
+      } finally {
+        this.loading = false
       }
     },
 
+    /**
+     * Cancel Edit
+     * @desc Stop editing
+     */
     cancelEdit () {
       this.edit = false
     }
-  },
-
-  // Created
-  created () {},
-
-  // Mounted
-  mounted () {}
+  }
 }
 </script>
 
