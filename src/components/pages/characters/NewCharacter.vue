@@ -27,6 +27,7 @@
             name="level"
             label="Level"
             type="number"
+            :max="20"
             v-model="character.level"
             v-validate="'required'"
             :error-messages="getError('level')"
@@ -109,12 +110,72 @@
           ></custom-select>
 
           <v-checkbox
-            class="pt-0"
+            class="pa-0"
             label="Enable Multiclass"
             v-model="character.enableMulticlass"
+            @click.native="enableMulticlass()"
           ></v-checkbox>
         </v-flex>
 
+        <!-- Class Subheader -->
+        <h3
+          v-if="character.enableMulticlass"
+          class="subheader ma-0 pl-1 pa-0"
+        >
+          Multiclass
+        </h3>
+
+
+        <!-- Multiclass -->
+        <v-flex xs12
+          v-for="(item, index) in character.multiclass"
+          :key="index"
+        >
+
+          <custom-select
+            label="Class Name"
+            :items="classes"
+            item-text="name"
+            item-value="name"
+            :custom="item.custom.name"
+            v-model="item.name"
+            @customize="item.custom.name = !item.custom.name"
+          ></custom-select>
+          <v-text-field
+            class="pb-0"
+            label="Class Level"
+            type="number"
+            :max="20"
+            v-model="item.level"
+          ></v-text-field>
+          <custom-select
+            v-if="getArchetypeOptions(item.name)"
+            label="Archetype"
+            :items="getArchetypeOptions(item.name)"
+            item-text="title"
+            item-value="title"
+            :custom="item.custom.archetype"
+            v-model="item.archetype"
+            @customize="item.custom.archetype = !item.custom.archetype"
+          ></custom-select>
+          <div
+            v-if="character.multiclass.length > 1"
+            class="flexbox justify-end"
+          >
+            <v-btn icon
+            @click="removeMulticlass(index)">
+              <v-icon>delete</v-icon>
+            </v-btn>
+          </div>
+          <v-divider></v-divider>
+        </v-flex>
+        <v-btn
+          v-if="character.enableMulticlass"
+          flat
+          @click="addMultiClass()"
+        >
+          Add Multiclass
+        </v-btn>
 
       </v-layout>
     </v-card-text>
@@ -173,11 +234,18 @@ export default {
           archetype: false
         }
       },
-      // email: undefined,
-      // password: undefined,
-      // displayName: undefined,
-      // confirmPassword: undefined,
-      loading: false
+      loading: false,
+      multiclassTemplate: {
+        name: undefined,
+        level: 1,
+        archetype: undefined,
+        specialization: undefined,
+        custom: {
+          name: false,
+          archetype: false,
+          specialization: false
+        }
+      }
     }
   },
 
@@ -253,6 +321,47 @@ export default {
           this.$refs[field].$refs.input.focus()
         }
       })
+    },
+
+    enableMulticlass () {
+      if (this.character.enableMulticlass) {
+        if (this.character.multiclass.length === 0) {
+          this.character.multiclass.push({...this.multiclassTemplate})
+        }
+      } else {
+        this.character.multiclass = []
+      }
+    },
+
+    getArchetypes (className) {
+      if (!className) return
+      for (let i in this.classes) {
+        if (className === this.classes[i].name) {
+          return this.classes[i].archetypes
+        }
+      }
+    },
+
+    getArchetypeOptions (className) {
+      const archetypes = this.getArchetypes(className)
+      if (!archetypes) return
+      if (this.character.level < archetypes.level) return
+      return archetypes.options
+    },
+
+    getArchetypeLabel (className) {
+      const archetypes = this.getArchetypes(className)
+      if (!archetypes) return
+      if (this.character.level < archetypes.level) return
+      return archetypes.name
+    },
+
+    addMultiClass () {
+      this.character.multiclass.push({...this.multiclassTemplate})
+    },
+
+    removeMulticlass (index) {
+      this.character.multiclass.splice(index, 1)
     }
   }
 }
