@@ -5,11 +5,11 @@
     "archetype": "None",
     "abilities": [{
       "title": "Rage",
-      "level": "0",
+      "level": "1",
       "description": "<p>In battle, you fight with primal ferocity. On your turn, you can enter a rage as a bonus action.</p><p>While raging, you gain the following benefits if you aren\u0027t wearing heavy armor:</p><ul><li>You have advantage on Strength checks and Strength saving throws.</li><li>When you make a melee weapon attack using Strength, you gain a bonus to the damage roll that increases as you gain levels as a barbarian, as shown in the rage Damage column of the Barbarian table.</li><li>You have resistance to bludgeoning, piercing, and slashing damage.</li></ul><p>If you are able to cast spells, you can\u0027t cast them or concentrate on them while raging.</p><p>Your rage lasts for 1 minute. It ends early if you are knocked unconscious or if your turn ends and you haven\u0027t attacked a hostile creature since your last turn or taken damage since then. You can also end your rage on your turn as a bonus action.</p><p>Once you have raged the number of times shown for your barbarian level in the rages column of the Barbarian table, you must finish a long rest before you can rage again.</p>"
     }, {
       "title": "Unarmored Defence",
-      "level": "0",
+      "level": "1",
       "description": "While you are not wearing any armor, your Arm or Class equals 10 + your Dexterity modifier + your Constitution modifier. You can use a shield and still gain this benefit."
     }, {
       "title": "Reckless Attack",
@@ -112,7 +112,7 @@
     "archetype": "None",
     "abilities": [{
       "title": "Bardic Inspiration",
-      "level": "0",
+      "level": "1",
       "description": "<p>You can inspire others through stirring words or music. To do so, you use a bonus action on your turn to choose one creature other than yourself within 60 feet of you who can hear you. That creature gains one Bardic Inspiration die, a d6.<p></p>Once within the next 10 minutes, the creature can roll the die and add the number rolled to one ability check, attack roll, or saving throw it makes. The creature can wait until after it rolls the d20 before deciding to use the Bardic Inspiration die, but must decide before the DM says whether the roll succeeds or fails. Once the Bardic Inspiration die is rolled, it is lost. A creature can have only one Bardic Inspiration die at a time.</p><p>You can use this feature a number of times equal to your Charisma modifier (a minimum of once). You regain any expended uses when you finish a long rest. Your Bardic Inspiration die changes when you reach certain levels in this class. The die becomes a d8 at 5th level, a d10 at 10th level, and a d12 at 15th level.</p>"
     }, {
       "title": "Jack of All Trades",
@@ -157,7 +157,7 @@
     "archetype": "College of Lore",
     "abilities": [{
       "title": "Bonus Proficiencies",
-      "level": "0",
+      "level": "1",
       "description": "When you join the College of Lore at 3rd level, you gain proficiency with three skills of your choice."
     }, {
       "title": "Cutting Words",
@@ -178,7 +178,7 @@
     "archetype": "College of Valor",
     "abilities": [{
       "title": "Bonus Proficiencies",
-      "level": "0",
+      "level": "1",
       "description": "When you join the College of Valor at 3rd level, you gain proficiency with medium armor, shields, and martial weapons."
     }, {
       "title": "Combat Inspiration",
@@ -199,7 +199,7 @@
     "archetype": "None",
     "abilities": [{
       "title": "Divine Domain",
-      "level": "0",
+      "level": "1",
       "description": "<p>Choose one domain related to your deity: Knowledge, Life, Light, Nature, Tempest, Trickery, or War. Each domain is detailed at the end of the class description, and each one provides examples of gods associated with it. Your choice grants you domain spells and other features when you choose it at 1st level. It also grants you additional ways to use Channel Divinity when you gain that feature at 2nd level, and additional benefits at 6th, 8th, and 17th levels.</p><p>Each domain has a list of spells—its domain spells— that you gain at the cleric levels noted in the domain description. Once you gain a domain spell, you always have it prepared, and it doesn\u0027t count against the number of spells you can prepare each day.</p><p>If you have a domain spell that doesn\u0027t appear on the cleric spell list, the spell is nonetheless a cleric spell for you.</p>"
     }, {
       "title": "Channel Divinity",
@@ -253,7 +253,7 @@
     "archetype": "Life Domain",
     "abilities": [{
       "title": "Bonus Proficiency",
-      "level": "0",
+      "level": "1",
       "description": "When you choose this domain at 1st level, you gain proficiency with heavy armor."
     }, {
       "title": "Disciples of Life",
