@@ -9,7 +9,7 @@
 
     <!-- Title -->
     <v-toolbar-title class="white--text">
-      DnD Hub - {{$route.name}}
+      {{$route.name}}
     </v-toolbar-title>
 
     <!-- Spacer -->

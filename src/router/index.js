@@ -8,6 +8,7 @@ import Profile from '@/components/pages/auth/Profile'
 
 // Characters
 import Characters from '@/components/pages/characters/Characters'
+import NewCharacter from '@/components/pages/characters/NewCharacter'
 
 Vue.use(Router)
 
@@ -33,6 +34,10 @@ export default new Router({
       path: '/characters',
       name: 'Characters',
       component: Characters
+    }, {
+      path: '/characters/new',
+      name: 'New Character',
+      component: NewCharacter
     }
   ]
 })

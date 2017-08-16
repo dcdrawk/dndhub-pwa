@@ -20,7 +20,7 @@
     <firebase></firebase>
 
     <!-- Game Data -->
-    <game-data></game-data>
+    <game-data v-if="user"></game-data>
   </v-app>
 </template>
 
@@ -55,6 +55,13 @@ export default {
   data () {
     return {
       navOpen: true
+    }
+  },
+
+  // Computed
+  computed: {
+    user () {
+      return this.$store.state.user
     }
   }
 }

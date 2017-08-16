@@ -25,6 +25,7 @@
             v-model="characterId"
             :value="index"
             :ripple="false"
+            @click.prevent
           ></v-radio>
         </v-list-tile-action>
 
@@ -46,6 +47,8 @@
         fixed
         bottom
         right
+        small
+        to="/characters/new"
       >
         <v-icon>add</v-icon>
       </v-btn>
