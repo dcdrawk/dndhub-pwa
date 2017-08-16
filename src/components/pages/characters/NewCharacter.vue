@@ -4,6 +4,7 @@
     <!-- Card Text -->
     <v-card-text>
       <v-layout row wrap>
+        <!-- General Info Subheader -->
         <h3 class="subheader ma-0 pl-1 pa-0">
           General Info
         </h3>
@@ -42,40 +43,79 @@
             v-model="character.experience"
           ></v-text-field>
         </v-flex>
-        <!-- <v-divider></v-divider> -->
+
+        <!-- Race Subheader -->
         <h3 class="subheader ma-0 pl-1 pa-0">
           Race
         </h3>
+
         <!-- Race -->
-        <v-flex xs12 class="custom">
-          <v-select
-            class="pb-0"
+        <v-flex xs12>
+          <custom-select
+            ref="race"
             label="Race"
             :items="races"
             item-text="name"
             item-value="name"
+            :custom="character.custom.race"
             v-model="character.race"
-            bottom
-          ></v-select>
-          <v-btn icon class="mb-0 mt-3">
-            <v-icon>edit</v-icon>
-          </v-btn>
+            @customize="customize('race')"
+          ></custom-select>
         </v-flex>
-        <!-- Confirm Password -->
-        <v-flex xs12 class="custom">
-          <v-select
-            class="pb-0"
+
+        <!-- Subrace -->
+        <v-flex xs12>
+          <custom-select
+            ref="subrace"
             label="Subrace"
             :items="subraces"
             item-text="name"
             item-value="name"
+            :disabled="!character.race"
+            :custom="character.custom.subrace"
             v-model="character.subrace"
-            bottom
-          ></v-select>
-          <v-btn icon class="mb-0 mt-3">
-            <v-icon>edit</v-icon>
-          </v-btn>
+            @customize="customize('subrace')"
+          ></custom-select>
         </v-flex>
+
+        <!-- Class Subheader -->
+        <h3 class="subheader ma-0 pl-1 pa-0">
+          Class
+        </h3>
+
+        <!-- Class -->
+        <v-flex xs12>
+          <custom-select
+            ref="class"
+            label="Class"
+            :items="classes"
+            item-text="name"
+            item-value="name"
+            :custom="character.custom.class"
+            v-model="character.class"
+            @customize="customize('class')"
+          ></custom-select>
+
+          <custom-select
+            v-if="archetypeOptions"
+            ref="archetype"
+            :label="archetypeLabel"
+            :items="archetypeOptions"
+            item-text="title"
+            item-value="title"
+            :custom="character.custom.archetype"
+            v-model="character.archetype"
+            @customize="customize('class')"
+          ></custom-select>
+
+          <v-checkbox
+            class="pt-0"
+            label="Enable Multiclass"
+            v-model="character.enableMulticlass"
+          ></v-checkbox>
+        </v-flex>
+
+
       </v-layout>
     </v-card-text>
 
@@ -95,17 +135,23 @@
 
 <script>
 /**
- * <sign-up></sign-up>
- * @desc User can sign up for dndhub
+ * <new-character></new-character>
+ * @desc User Creates a new character
  */
 import Validation from '../../../mixins/Validation'
+import CustomSelect from '../../inputs/CustomSelect'
 
 export default {
   // Name
-  name: 'sign-up',
+  name: 'new-character',
 
   // Mixins
   mixins: [Validation],
+
+  // Components
+  components: {
+    CustomSelect
+  },
 
   // Data
   data () {
@@ -115,7 +161,17 @@ export default {
         level: 1,
         experience: 0,
         race: undefined,
-        subrace: undefined
+        subrace: undefined,
+        class: undefined,
+        archetype: undefined,
+        enableMulticlass: false,
+        multiclass: [],
+        custom: {
+          race: false,
+          subrace: false,
+          class: false,
+          archetype: false
+        }
       },
       // email: undefined,
       // password: undefined,
@@ -130,6 +186,9 @@ export default {
     races () {
       return this.$store.state.gameData.races
     },
+    classes () {
+      return this.$store.state.gameData.classes
+    },
     subraces () {
       const race = this.character.race
       if (race) {
@@ -138,9 +197,26 @@ export default {
             return this.races[i].subraces
           }
         }
-        // this.races.forea
-        // return this.
       }
+    },
+    archetypes () {
+      const className = this.character.class
+      if (!className) return
+      for (let i in this.classes) {
+        if (className === this.classes[i].name) {
+          return this.classes[i].archetypes
+        }
+      }
+    },
+    archetypeOptions () {
+      if (!this.archetypes) return
+      if (this.character.level < this.archetypes.level) return
+      return this.archetypes.options
+    },
+    archetypeLabel () {
+      if (!this.archetypes) return
+      if (this.character.level < this.archetypes.level) return
+      return this.archetypes.name
     }
   },
 
@@ -167,6 +243,16 @@ export default {
       } finally {
         this.loading = false
       }
+    },
+
+    customize (field) {
+      this.character[field] = undefined
+      this.character.custom[field] = !this.character.custom[field]
+      this.$nextTick(() => {
+        if (this.character.custom[field] && this.$refs[field]) {
+          this.$refs[field].$refs.input.focus()
+        }
+      })
     }
   }
 }
