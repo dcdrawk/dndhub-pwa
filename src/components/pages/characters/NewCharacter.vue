@@ -3,82 +3,23 @@
   <v-card>
     <!-- Card Text -->
     <v-card-text>
+      <general-fields
+        :name="character.name"
+        :level="+character.level"
+        :experience="+character.experience"
+        @update="character[$event.field] = $event.value"
+      ></general-fields>
+
+      <race-fields
+        :race="character.race"
+        :subrace="character.subrace"
+        :custom-race="character.custom.race"
+        :custom-subrace="character.custom.subrace"
+        @update="character[$event.field] = $event.value"
+        @customize="customize($event)"
+      ></race-fields>
+
       <v-layout row wrap>
-        <!-- General Info Subheader -->
-        <h3 class="subheader ma-0 pl-1 pa-0">
-          General Info
-        </h3>
-        <!-- Character Name -->
-        <v-flex xs12>
-          <v-text-field
-            class="pb-0"
-            name="character_name"
-            label="Character Name"
-            v-model="character.name"
-            v-validate="'required'"
-            :error-messages="getError('character_name')"
-          ></v-text-field>
-        </v-flex>
-
-        <!-- Level -->
-        <v-flex xs6>
-          <v-text-field
-            class="pb-0"
-            name="level"
-            label="Level"
-            type="number"
-            :max="20"
-            v-model="character.level"
-            v-validate="'required'"
-            :error-messages="getError('level')"
-          ></v-text-field>
-        </v-flex>
-
-        <!-- Experience -->
-        <v-flex xs6>
-          <v-text-field
-            class="pb-0"
-            name="experience"
-            label="Experience"
-            type="number"
-            v-model="character.experience"
-          ></v-text-field>
-        </v-flex>
-
-        <!-- Race Subheader -->
-        <h3 class="subheader ma-0 pl-1 pa-0">
-          Race
-        </h3>
-
-        <!-- Race -->
-        <v-flex xs12>
-          <custom-select
-            ref="race"
-            label="Race"
-            :items="races"
-            item-text="name"
-            item-value="name"
-            :custom="character.custom.race"
-            v-model="character.race"
-            @customize="customize('race')"
-          ></custom-select>
-        </v-flex>
-
-        <!-- Subrace -->
-        <v-flex xs12>
-          <custom-select
-            ref="subrace"
-            label="Subrace"
-            :items="subraces"
-            item-text="name"
-            item-value="name"
-            :disabled="!character.race"
-            :custom="character.custom.subrace"
-            v-model="character.subrace"
-            @customize="customize('subrace')"
-          ></custom-select>
-        </v-flex>
-
         <!-- Class Subheader -->
         <h3 class="subheader ma-0 pl-1 pa-0">
           Class
@@ -201,7 +142,8 @@
  */
 import Validation from '../../../mixins/Validation'
 import CustomSelect from '../../inputs/CustomSelect'
-
+import GeneralFields from './GeneralFields'
+import RaceFields from './RaceFields'
 export default {
   // Name
   name: 'new-character',
@@ -211,7 +153,9 @@ export default {
 
   // Components
   components: {
-    CustomSelect
+    CustomSelect,
+    GeneralFields,
+    RaceFields
   },
 
   // Data
@@ -251,21 +195,8 @@ export default {
 
   // Computed
   computed: {
-    races () {
-      return this.$store.state.gameData.races
-    },
     classes () {
       return this.$store.state.gameData.classes
-    },
-    subraces () {
-      const race = this.character.race
-      if (race) {
-        for (let i in this.races) {
-          if (race === this.races[i].name) {
-            return this.races[i].subraces
-          }
-        }
-      }
     },
     archetypes () {
       const className = this.character.class
