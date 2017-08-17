@@ -1,5 +1,6 @@
 <template>
   <div class="flexbox">
+    <!-- Select -->
     <v-select
       bottom
       v-if="!custom"
@@ -12,6 +13,8 @@
       :disabled="disabled"
       @input="$emit('input', $event)"
     ></v-select>
+
+    <!-- Input Field -->
     <v-text-field
       v-else
       ref="input"
@@ -21,10 +24,12 @@
       :value="value"
       @input="$emit('input', $event)"
     ></v-text-field>
+
+    <!-- Edit / Cancel Button -->
     <v-btn
       icon class="mb-0 mt-3"
       :disabled="disabled"
-      @click="$emit('customize')"
+      @click="customize()"
     >
       <v-icon v-if="!custom">
         edit
@@ -38,16 +43,12 @@
 
 <script>
 /**
- * <component></component>
- * Component
- * @desc description
+ * <custom-select></custom-select>
+ * @desc Select with optional text input field
  */
 export default {
   // Name
-  name: 'component',
-
-  // Components
-  components: {},
+  name: 'custom-select',
 
   // Props
   props: {
@@ -61,27 +62,21 @@ export default {
     disabled: Boolean
   },
 
-  // Data
-  data () {
-    return {
-      msg: 'Hello World'
-    }
-  },
-
-  // Computed
-  computed: {},
-
-  // Watch
-  watch: {},
-
   // Methods
-  methods: {},
-
-  // Created
-  created () {},
-
-  // Mounted
-  mounted () {}
+  methods: {
+    /**
+     * Customize
+     * @desc Emit a 'customize' event and focus the input field
+     * @emits customize
+     */
+    customize () {
+      this.$emit('customize')
+      this.$nextTick(() => {
+        if (!this.custom) return
+        this.$refs.input.focus()
+      })
+    }
+  }
 }
 </script>
 

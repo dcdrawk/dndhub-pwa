@@ -1,5 +1,6 @@
 <template>
   <v-layout row wrap>
+    <!-- Subheader -->
     <h3 class="subheader ma-0 pl-1 pa-0">
       Race
     </h3>
@@ -12,10 +13,10 @@
         :items="races"
         item-text="name"
         item-value="name"
-        :custom="customRace"
-        :value="race"
-        @input="$emit('update', {field: 'race', value: $event})"
-        @customize="$emit('customize', 'race')"
+        :custom="character.custom.race"
+        :value="character.race"
+        @input="character.update('race', $event)"
+        @customize="character.customize('race')"
       ></custom-select>
     </v-flex>
 
@@ -27,11 +28,11 @@
         :items="subraces"
         item-text="name"
         item-value="name"
-        :disabled="!race"
-        :custom="customSubrace"
-        :value="subrace"
-        @input="$emit('update', {field: 'subrace', value: $event})"
-        @customize="$emit('customize', 'subrace')"
+        :disabled="!character.race"
+        :custom="character.custom.subrace"
+        :value="character.subrace"
+        @input="character.update('subrace', $event)"
+        @customize="character.customize('subrace')"
       ></custom-select>
     </v-flex>
   </v-layout>
@@ -39,14 +40,13 @@
 
 <script>
 /**
- * <component></component>
- * Component
- * @desc description
+ * <race-fields></race-fields>
+ * @desc contains race fields
  */
 import CustomSelect from '../../inputs/CustomSelect'
 export default {
   // Name
-  name: 'component',
+  name: 'race-fields',
 
   // Components
   components: {
@@ -55,17 +55,7 @@ export default {
 
   // Props
   props: {
-    race: String,
-    subrace: String,
-    customRace: Boolean,
-    customSubrace: Boolean
-  },
-
-  // Data
-  data () {
-    return {
-      msg: 'Hello World'
-    }
+    character: Object
   },
 
   // Computed
@@ -74,7 +64,7 @@ export default {
       return this.$store.state.gameData.races
     },
     subraces () {
-      const race = this.race
+      const race = this.character.race
       if (race) {
         for (let i in this.races) {
           if (race === this.races[i].name) {
@@ -83,19 +73,7 @@ export default {
         }
       }
     }
-  },
-
-  // Watch
-  watch: {},
-
-  // Methods
-  methods: {},
-
-  // Created
-  created () {},
-
-  // Mounted
-  mounted () {}
+  }
 }
 </script>
 

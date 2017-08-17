@@ -12,9 +12,10 @@
         label="Character Name"
         v-validate="'required'"
         :error-messages="getError('character_name')"
-        :value="name"
-        @input="$emit('update', {field: 'name', value: $event})"
+        :value="character.name"
+        @input="character.update('name', $event)"
       ></v-text-field>
+        <!-- @input="$emit('update', {field: 'name', value: $event})" -->
     </v-flex>
 
     <!-- Level -->
@@ -27,8 +28,8 @@
         :max="20"
         v-validate="'required'"
         :error-messages="getError('level')"
-        :value="level"
-        @input="$emit('update', {field: 'level', value: $event})"
+        :value="+character.level"
+        @input="character.update('level', $event)"
       ></v-text-field>
     </v-flex>
 
@@ -39,9 +40,33 @@
         name="experience"
         label="Experience"
         type="number"
-        :value="experience"
-        @input="$emit('update', {field: 'experience', value: $event})"
+        :value="+character.experience"
+        @input="character.update('experience', $event)"
       ></v-text-field>
+    </v-flex>
+
+    <v-flex xs12>
+      <custom-select
+        label="Background"
+        :items="backgrounds"
+        item-value="name"
+        item-text="name"
+        :custom="character.custom.background"
+        :value="character.background"
+        @input="character.update('background', $event)"
+        @customize="character.customize('background')"
+      ></custom-select>
+
+      <custom-select
+        label="Alignments"
+        :items="alignments"
+        item-value="name"
+        item-text="name"
+        :custom="character.custom.alignment"
+        :value="character.alignment"
+        @input="character.update('alignment', $event)"
+        @customize="character.customize('alignment')"
+      ></custom-select>
     </v-flex>
   </v-layout>
 </template>
@@ -52,6 +77,7 @@
  * @desc contains all the general-info fields
  */
 import Validation from '../../../mixins/Validation'
+import CustomSelect from '../../inputs/CustomSelect'
 
 export default {
   // Name
@@ -61,36 +87,24 @@ export default {
   mixins: [Validation],
 
   // Components
-  components: {},
+  components: {
+    CustomSelect
+  },
 
   // Props
   props: {
-    name: String,
-    level: Number,
-    experience: Number
-  },
-
-  // Data
-  data () {
-    return {
-      msg: 'Hello World'
-    }
+    character: Object
   },
 
   // Computed
-  computed: {},
-
-  // Watch
-  watch: {},
-
-  // Methods
-  methods: {},
-
-  // Created
-  created () {},
-
-  // Mounted
-  mounted () {}
+  computed: {
+    alignments () {
+      return this.$store.state.gameData.alignments
+    },
+    backgrounds () {
+      return this.$store.state.gameData.backgrounds
+    }
+  }
 }
 </script>
 
