@@ -31,6 +31,31 @@
       </v-list-group>
     </v-list>
     <v-divider></v-divider>
+
+    <!-- List -->
+    <v-list dense class="pt-2">
+      <h3 class="subheader ma-0">Character</h3>
+      <!-- List Group -->
+      <v-list-group
+        v-for="item in characterMenu"
+        v-model="item.active"
+        :key="item.title"
+      >
+        <!-- List Tile -->
+        <v-list-tile slot="item" :to="item.href">
+          <v-list-tile-action>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>
+            <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+          </v-list-tile-content>
+          <v-list-tile-action v-if="item.subitems">
+            <v-icon>keyboard_arrow_down</v-icon>
+          </v-list-tile-action>
+        </v-list-tile>
+      </v-list-group>
+    </v-list>
+    <v-divider></v-divider>
   </v-navigation-drawer>
 </template>
 
@@ -71,6 +96,23 @@ export default {
         title: 'Characters',
         icon: 'view_list',
         href: '/characters'
+      }],
+      characterMenu: [{
+        title: 'Character Details',
+        icon: 'description',
+        href: '/character/general'
+      }, {
+        title: 'Stats',
+        icon: 'insert_chart',
+        href: '/character/general'
+      }, {
+        title: 'Info',
+        icon: 'info',
+        href: '/character/general'
+      }, {
+        title: 'Info',
+        icon: 'info',
+        href: '/character/general'
       }]
     }
   },

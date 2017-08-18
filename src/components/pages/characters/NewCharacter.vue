@@ -76,8 +76,17 @@ export default {
   methods: {
     async create () {
       try {
-        const character = await this.$db.ref(`characters/${this.user.uid}`).push(this.character)
-        console.log(character)
+        const valid = await this.$validator.validate()
+        console.log(valid)
+        if (!valid) return
+        for (var i in this.character) {
+          if (this.character[i] === undefined) delete this.characters[i]
+        }
+        const character = await this.$db
+          .ref(`characters/${this.user.uid}`)
+          .push(this.character)
+        this.$store.commit('select_character', character.key)
+        this.$router.push('/characters')
       } catch (error) {
         console.warn(error)
       }

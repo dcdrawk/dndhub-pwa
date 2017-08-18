@@ -15,7 +15,6 @@
         :value="character.name"
         @input="character.update('name', $event)"
       ></v-text-field>
-        <!-- @input="$emit('update', {field: 'name', value: $event})" -->
     </v-flex>
 
     <!-- Level -->
@@ -25,8 +24,8 @@
         name="level"
         label="Level"
         type="number"
-        :max="20"
-        v-validate="'required'"
+        :min="1" :max="20"
+        v-validate="'required|min_value:1|max_value:20'"
         :error-messages="getError('level')"
         :value="+character.level"
         @input="character.update('level', $event)"
@@ -46,6 +45,7 @@
     </v-flex>
 
     <v-flex xs12>
+      <!-- Proficiency Bonus -->
       <custom-input
         label="Proficiency Bonus"
         type="number"
@@ -55,6 +55,8 @@
         @customize="character.customize('proficiencyBonus')"
         @input="character.update('proficiencyBonus', $event)"
       ></custom-input>
+
+      <!-- Background -->
       <custom-select
         label="Background"
         :items="backgrounds"
@@ -66,6 +68,7 @@
         @customize="character.customize('background')"
       ></custom-select>
 
+      <!-- Alignments -->
       <custom-select
         label="Alignments"
         :items="alignments"
@@ -95,6 +98,9 @@ export default {
 
   // Mixins
   mixins: [Validation],
+
+  // Inject
+  inject: ['$validator'],
 
   // Components
   components: {

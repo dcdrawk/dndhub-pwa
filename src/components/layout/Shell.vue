@@ -19,6 +19,9 @@
     <!-- Firebase -->
     <firebase></firebase>
 
+    <!-- Characters -->
+    <characters></characters>
+
     <!-- Game Data -->
     <game-data v-if="user"></game-data>
   </v-app>
@@ -34,6 +37,7 @@ import DndToaster from '../toast/DndToaster'
 import Toolbar from './Toolbar'
 import NavigationDrawer from './NavigationDrawer'
 import GameData from '../game-data/GameData'
+import Characters from '../pages/characters/Characters'
 
 export default {
   // Name
@@ -45,7 +49,8 @@ export default {
     Toolbar,
     NavigationDrawer,
     DndToaster,
-    GameData
+    GameData,
+    Characters
   },
 
   // Props

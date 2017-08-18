@@ -95,7 +95,7 @@ export default class Character {
   getProficiencyBonus () {
     return this.custom.profiencyBonus
       ? this.profiencyBonus
-      : Math.floor((this.level + 7) / 4)
+      : Math.floor((+this.level + 7) / 4)
   }
 }
 
@@ -112,28 +112,10 @@ const multiclassTemplate = {
 }
 
 const abilityScoreTemplate = {
-  Strength: {
-    base: 10,
-    bonus: 0
-  },
-  Dexterity: {
-    base: 10,
-    bonus: 0
-  },
-  Constitution: {
-    base: 10,
-    bonus: 0
-  },
-  Intelligence: {
-    base: 10,
-    bonus: 0
-  },
-  Wisdom: {
-    base: 10,
-    bonus: 0
-  },
-  Charisma: {
-    base: 10,
-    bonus: 0
-  }
+  Strength: { base: 10, bonus: 0 },
+  Dexterity: { base: 10, bonus: 0 },
+  Constitution: { base: 10, bonus: 0 },
+  Intelligence: { base: 10, bonus: 0 },
+  Wisdom: { base: 10, bonus: 0 },
+  Charisma: { base: 10, bonus: 0 }
 }
