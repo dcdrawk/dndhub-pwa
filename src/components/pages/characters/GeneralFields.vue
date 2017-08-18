@@ -46,6 +46,15 @@
     </v-flex>
 
     <v-flex xs12>
+      <custom-input
+        label="Proficiency Bonus"
+        type="number"
+        :value="character.getProficiencyBonus()"
+        :read-only="!character.custom.proficiencyBonus"
+        :custom="character.custom.proficiencyBonus"
+        @customize="character.customize('proficiencyBonus')"
+        @input="character.update('proficiencyBonus', $event)"
+      ></custom-input>
       <custom-select
         label="Background"
         :items="backgrounds"
@@ -78,6 +87,7 @@
  */
 import Validation from '../../../mixins/Validation'
 import CustomSelect from '../../inputs/CustomSelect'
+import CustomInput from '../../inputs/CustomInput'
 
 export default {
   // Name
@@ -88,7 +98,8 @@ export default {
 
   // Components
   components: {
-    CustomSelect
+    CustomSelect,
+    CustomInput
   },
 
   // Props

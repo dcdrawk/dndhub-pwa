@@ -7,15 +7,15 @@ export default class Character {
    * Creates a character
    */
   constructor (options = {}) {
-    this.name = options.name || undefined
+    // this.name = options.name || undefined
     this.level = options.level || 1
     this.experience = options.experience || 0
-    this.background = options.background || undefined
-    this.alignment = options.alignment || undefined
-    this.race = options.race || undefined
-    this.subrace = options.subrace || undefined
-    this.class = options.class || undefined
-    this.archetype = options.archetype || undefined
+    // this.background = options.background || undefined
+    // this.alignment = options.alignment || undefined
+    // this.race = options.race || undefined
+    // this.subrace = options.subrace || undefined
+    // this.class = options.class || undefined
+    // this.archetype = options.archetype || undefined
     this.enableMulticlass = options.enableMulticlass || false
     this.multiclass = options.multiclass || []
     this.weapons = options.weapons || []
@@ -23,6 +23,7 @@ export default class Character {
     this.spells = options.spells || []
     this.inventory = options.inventory || []
     this.custom = options.custom || {}
+    this.abilityScores = options.abilityScores || abilityScoreTemplate
   }
 
   /**
@@ -32,7 +33,8 @@ export default class Character {
    * @param {Any} value
    */
   update (field, value) {
-    this[field] = value
+    // this[field] = value
+    Vue.set(this, field, value)
   }
 
   /**
@@ -90,8 +92,10 @@ export default class Character {
    * Customize Multiclass
    * @desc push a multiclassTemplate to the multiclass array
    */
-  customizeMulticlass (index, field, value) {
-    this.multiclass[index].customize = value
+  getProficiencyBonus () {
+    return this.custom.profiencyBonus
+      ? this.profiencyBonus
+      : Math.floor((this.level + 7) / 4)
   }
 }
 
@@ -104,5 +108,32 @@ const multiclassTemplate = {
     name: false,
     archetype: false,
     specialization: false
+  }
+}
+
+const abilityScoreTemplate = {
+  Strength: {
+    base: 10,
+    bonus: 0
+  },
+  Dexterity: {
+    base: 10,
+    bonus: 0
+  },
+  Constitution: {
+    base: 10,
+    bonus: 0
+  },
+  Intelligence: {
+    base: 10,
+    bonus: 0
+  },
+  Wisdom: {
+    base: 10,
+    bonus: 0
+  },
+  Charisma: {
+    base: 10,
+    bonus: 0
   }
 }

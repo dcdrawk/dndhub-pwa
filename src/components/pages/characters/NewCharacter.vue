@@ -76,8 +76,8 @@ export default {
   methods: {
     async create () {
       try {
-        await this.$db.ref(`characters/${this.user.uid}`).push(this.character)
-        console.log('character created')
+        const character = await this.$db.ref(`characters/${this.user.uid}`).push(this.character)
+        console.log(character)
       } catch (error) {
         console.warn(error)
       }
