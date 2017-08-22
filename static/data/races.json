@@ -2,9 +2,9 @@
   "races": [{
     "type": "race",
     "name": "Dwarf",
-    "abilityScoreIncrease": "Your Constitution score increases by 2",
+    "abilityScoreIncrease": "+2 Constitution",
     "speed": "30",
-    "languages": "Common,Dwarvish",
+    "languages": "Common, Dwarvish",
     "traits": [{
       "title": "Dark Vision",
       "description": "Accustomed to life underground, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can\u0027t discern color in darkness, only shades of gray."
@@ -23,14 +23,14 @@
     }],
     "subraces": [{
       "name": "Hill Dwarf",
-      "abilityScoreIncrease": "Your Wisdom score increases by 1.",
+      "abilityScoreIncrease": "+1 Wisdom",
       "traits": [{
         "title": "Dwarven Toughness",
         "description": "Your hit point maximum increases by 1, and it increases by 1 every time you gain a level."
       }]
     }, {
       "name": "Mountain Dwarf",
-      "abilityScoreIncrease": "Your Strength score increases by 2.",
+      "abilityScoreIncrease": "+2 Strength",
       "traits": [{
         "title": "Dwarven Toughness",
         "description": "You have proficiency with light and medium armor."
@@ -39,9 +39,9 @@
   }, {
     "type": "race",
     "name": "Elf",
-    "abilityScoreIncrease": "Your Dexterity score increases by 2.",
+    "abilityScoreIncrease": "+2 Dexterity",
     "speed": "30",
-    "languages": "Common,Elvish",
+    "languages": "Common, Elvish",
     "traits": [{
       "title": "Darkvision",
       "description": "Accustomed to twilit forests and the night sky, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray."
@@ -57,7 +57,7 @@
     }],
     "subraces": [{
       "name": "High Elf",
-      "abilityScoreIncrease": "Your Intelligence score increases by 1.",
+      "abilityScoreIncrease": "+1 Intelligence",
       "traits": [{
         "title": "Elf Weapon Training",
         "description": "You have proficiency with the longsword, shortsword, shortbow, and longbow."
@@ -70,7 +70,7 @@
       }]
     }, {
       "name": "Wood Elf",
-      "abilityScoreIncrease": "Your Wisdom score increases by 1.",
+      "abilityScoreIncrease": "+1 Wisdom",
       "traits": [{
         "title": "Elf Weapon Training",
         "description": " You have proficiency with the longsword, shortsword, shortbow, and longbow."
@@ -83,7 +83,7 @@
       }]
     }, {
       "name": "Dark Elf (Drow)",
-      "abilityScoreIncrease": "Your Charisma score increases by 1.",
+      "abilityScoreIncrease": "+1 Charisma",
       "traits": [{
         "title": "Superior Darkvision",
         "description": "Your darkvision has a radius of 120 feet. "
@@ -101,9 +101,9 @@
   }, {
     "type": "race",
     "name": "Halfling",
-    "abilityScoreIncrease": "Your Dexterity score increases by 2.",
+    "abilityScoreIncrease": "+2 Dexterity",
     "speed": "25",
-    "languages": "Common,Halfling",
+    "languages": "Common, Halfling",
     "traits": [{
       "title": "Lucky",
       "description": "When you roll a 1 on an attack roll, ability check, or saving throw, you can reroll the die and must use the new roll."
@@ -112,18 +112,18 @@
       "description": "You have advantage on saving throws against being frightened."
     }, {
       "title": "Halfling Nimbleness",
-      "description": "You can move through the space of any creature that is of a size larger than yours"
+      "description": "You can move through the space of any creature that is of a size larger than yours."
     }],
     "subraces": [{
       "name": "Lightfoot",
-      "abilityScoreIncrease": "Your Charisma score increases by 1.",
+      "abilityScoreIncrease": "+1 Charisma",
       "traits": [{
         "title": "Naturally Stealthy",
         "description": "You can attempt to hide even when you are obscured only by a creature that is at least one size larger than you."
       }]
     }, {
       "name": "Stout",
-      "abilityScoreIncrease": "Your Constitution score increases by 1.",
+      "abilityScoreIncrease": "+1 Constitution",
       "traits": [{
         "title": "Stout Resilience",
         "description": "You have advantage on saving throws against poison, and you have resistance against poison damage."
@@ -132,7 +132,7 @@
   }, {
     "type": "race",
     "name": "Human",
-    "abilityScoreIncrease": "Your ability scores each increase by 1.",
+    "abilityScoreIncrease": "+1 all Ability Scores",
     "speed": "30",
     "languages": "Common",
     "subraces": [{
@@ -157,9 +157,9 @@
   }, {
     "type": "race",
     "name": "Dragonborn",
-    "abilityScoreIncrease": "Your Strength score increases by 2, and your Charisma score increases by 1.",
+    "abilityScoreIncrease": "+2 Strength, +1 Charisma",
     "speed": "30",
-    "languages": "Common,Draconic",
+    "languages": "Common, Draconic",
     "traits": [{
       "title": "Draconic Ancestry",
       "description": " You have draconic ancestry. Choose one type of dragon from the Draconic Ancestry table. Your breath weapon and damage resistance are determined by the dragon type, as shown in the table."
@@ -261,7 +261,7 @@
   }, {
     "type": "race",
     "name": "Gnome",
-    "abilityScoreIncrease": "Your Intelligence score increases by 2. ",
+    "abilityScoreIncrease": "+2 Intelligence",
     "speed": "25",
     "languages": "Common, Gnomish",
     "traits": [{
@@ -273,7 +273,7 @@
     }],
     "subraces": [{
       "name": "Forest Gnome",
-      "abilityScoreIncrease": "Your Dexterity score increases by 1. ",
+      "abilityScoreIncrease": "+1 Dexterity",
       "traits": [{
         "title": "Natural Illusionist",
         "description": "You know the minor illusion cantrip. Intelligence is your spellcasting ability for it."
@@ -283,7 +283,7 @@
       }]
     }, {
       "name": "Rock Gnome",
-      "abilityScoreIncrease": "Your Constitution score increases by 1.",
+      "abilityScoreIncrease": "+1 Constitution",
       "traits": [{
         "title": "Artificer’s Lore",
         "description": "Whenever you make an Intelligence (History) check related to magic items, alchemical objects, or technological devices, you can add twice your proficiency bonus, instead of any proficiency bonus you normally apply."
@@ -295,9 +295,9 @@
   }, {
     "type": "race",
     "name": "Half-Elf",
-    "abilityScoreIncrease": "Your Charisma score increases by 2, and two other ability scores of your choice increase by 1.",
+    "abilityScoreIncrease": "+2 Charisma, +1 two scores of your choice",
     "speed": "30",
-    "languages": "Common,Elvish",
+    "languages": "Common, Elvish",
     "traits": [{
       "title": "Darkvision",
       "description": "Thanks to your elf blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray."
@@ -311,9 +311,9 @@
   }, {
     "type": "race",
     "name": "Half-Orc",
-    "abilityScoreIncrease": "Your Strength score increases by 2, and your Constitution score increases by 1.",
+    "abilityScoreIncrease": "+2 Strength, +1 Constitution",
     "speed": "30",
-    "languages": "Common,Orc",
+    "languages": "Common, Orc",
     "traits": [{
       "title": "Darkvision",
       "description": "Thanks to your orc blood, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can\u0027t discern color in darkness, only shades of gray"
@@ -330,9 +330,9 @@
   }, {
     "type": "race",
     "name": "Tiefling",
-    "abilityScoreIncrease": "Your Intelligence score increases by 1, and your Charisma score increases by 2.",
+    "abilityScoreIncrease": "+1 Intelligence, +2 Charisma",
     "speed": "30",
-    "languages": "Common,Infernal",
+    "languages": "Common, Infernal",
     "traits": [{
       "title": "Darkvision",
       "description": "Thanks to your infernal heritage, you have superior vision in dark and dim conditions. You can see in dim light within 60 feet of you as if it were bright light, and in darkness as if it were dim light. You can’t discern color in darkness, only shades of gray."

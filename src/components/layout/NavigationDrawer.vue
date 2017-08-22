@@ -124,7 +124,8 @@ export default {
           title: 'General',
           href: '/details/general'
         }, {
-          title: 'Race'
+          title: 'Race',
+          href: '/details/race'
         }, {
           title: 'Class'
         }]

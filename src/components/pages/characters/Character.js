@@ -45,6 +45,20 @@ export default class Character {
   }
 
   /**
+   * Set Race
+   * @desc Sets a character's race
+   * @param {String} field
+   * @param {Any} value
+   */
+  setRace (race) {
+    this.update('race', race.name)
+    Vue.set(this, 'abilityScoreIncrease', race.abilityScoreIncrease)
+    Vue.set(this, 'speed', race.speed)
+    Vue.set(this, 'languages', race.languages)
+    Vue.set(this, 'traits', race.traits)
+  }
+
+  /**
    * Save
    * @desc Updates a character field
    * @param {String} field

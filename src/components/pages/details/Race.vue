@@ -4,10 +4,12 @@
   <!-- <div v-if="character"> -->
     <v-card-text>
 
-      <general-fields
+      <!-- <race-fields
         :character="character"
-      ></general-fields>
+      ></race-fields> -->
 
+      <race-details
+      ></race-details>
     </v-card-text>
   </v-card>
   <!-- </div> -->
@@ -19,14 +21,16 @@
  * Component
  * @desc description
  */
-import GeneralFields from '../characters/GeneralFields'
+import RaceFields from '../characters/RaceFields'
+import RaceDetails from './RaceDetails'
 export default {
   // Name
   name: 'general',
 
   // Components
   components: {
-    GeneralFields
+    RaceFields,
+    RaceDetails
   },
 
   // Props
@@ -43,6 +47,13 @@ export default {
   computed: {
     character () {
       return this.$store.state.character
+    },
+
+    race () {
+      // const races = this.$store.state.gameData.races
+      // for (let i in races) {
+
+      // }
     }
   },
 
