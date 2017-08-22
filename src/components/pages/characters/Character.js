@@ -1,4 +1,7 @@
 import Vue from 'vue'
+import Store from '../../../store'
+import Firebase from 'firebase'
+import Debounce from 'lodash.debounce'
 /**
  * Character
  */
@@ -7,23 +10,27 @@ export default class Character {
    * Creates a character
    */
   constructor (options = {}) {
+    console.log('test', options)
+    Object.assign(this, {...options})
     // this.name = options.name || undefined
-    this.level = options.level || 1
-    this.experience = options.experience || 0
+    // this.level = options.level || 1
+    // this.experience = options.experience || 0
     // this.background = options.background || undefined
     // this.alignment = options.alignment || undefined
     // this.race = options.race || undefined
     // this.subrace = options.subrace || undefined
     // this.class = options.class || undefined
     // this.archetype = options.archetype || undefined
-    this.enableMulticlass = options.enableMulticlass || false
-    this.multiclass = options.multiclass || []
-    this.weapons = options.weapons || []
-    this.armor = options.armor || []
-    this.spells = options.spells || []
-    this.inventory = options.inventory || []
-    this.custom = options.custom || {}
+    // this.enableMulticlass = options.enableMulticlass || false
+    // this.multiclass = options.multiclass || []
+    // this.weapons = options.weapons || []
+    // this.armor = options.armor || []
+    // this.spells = options.spells || []
+    // this.inventory = options.inventory || []
+    this.save = Debounce(this.save, 500)
     this.abilityScores = options.abilityScores || abilityScoreTemplate
+    this.custom = options.custom || {}
+    if (options) this.savable = true
   }
 
   /**
@@ -33,8 +40,24 @@ export default class Character {
    * @param {Any} value
    */
   update (field, value) {
-    // this[field] = value
     Vue.set(this, field, value)
+    if (this.savable) this.save(field, value)
+  }
+
+  /**
+   * Save
+   * @desc Updates a character field
+   * @param {String} field
+   * @param {Any} value
+   */
+  save (field, value) {
+    console.log('save')
+    const uid = Store.state.uid
+    const cid = Store.state.characterId
+    const update = {}
+    update[field] = value
+    Firebase.database().ref(`characters/${uid}/${cid}`)
+      .update(update)
   }
 
   /**
@@ -93,9 +116,11 @@ export default class Character {
    * @desc push a multiclassTemplate to the multiclass array
    */
   getProficiencyBonus () {
+    const defaultBonus = Math.floor((+this.level + 7) / 4)
+    if (!this.custom) return defaultBonus
     return this.custom.profiencyBonus
       ? this.profiencyBonus
-      : Math.floor((+this.level + 7) / 4)
+      : defaultBonus
   }
 }
 

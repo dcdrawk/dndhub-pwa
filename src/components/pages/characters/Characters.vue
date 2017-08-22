@@ -33,6 +33,9 @@ export default {
       if (!this.user) return
       this.$db.ref(`characters/${this.user.uid}`).on('value', (snapshot) => {
         this.$store.commit('update_characters', snapshot.val())
+        if (this.characterId) {
+          this.selectCharacter(this.characterId)
+        }
       })
     },
 

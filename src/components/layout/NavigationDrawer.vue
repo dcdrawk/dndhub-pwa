@@ -15,9 +15,10 @@
         v-for="item in menu"
         v-model="item.active"
         :key="item.title"
+
       >
         <!-- List Tile -->
-        <v-list-tile slot="item" :to="item.href">
+        <v-list-tile slot="item" :to="item.href" class="">
           <v-list-tile-action>
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
@@ -33,7 +34,7 @@
     <v-divider></v-divider>
 
     <!-- List -->
-    <v-list dense class="pt-2">
+    <v-list dense class="pt-2" v-if="character">
       <h3 class="subheader ma-0">Character</h3>
       <!-- List Group -->
       <v-list-group
@@ -58,7 +59,12 @@
             <v-icon>keyboard_arrow_down</v-icon>
           </v-list-tile-action>
         </v-list-tile>
-        <v-list-tile v-if="item.items" v-for="(subItem, index) in item.items" :key="index">
+        <v-list-tile
+          v-if="item.items"
+          v-for="(subItem, index) in item.items"
+          :key="index"
+          :to="subItem.href"
+        >
           <v-list-tile-content>
             <v-list-tile-title>{{ subItem.title }}</v-list-tile-title>
           </v-list-tile-content>
@@ -115,7 +121,8 @@ export default {
         icon: 'description',
         active: false,
         items: [{
-          title: 'General'
+          title: 'General',
+          href: '/details/general'
         }, {
           title: 'Race'
         }, {
@@ -181,26 +188,16 @@ export default {
     },
     user () {
       return this.$store.state.user
+    },
+
+    character () {
+      return this.$store.state.character
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-// .icon {
-//     -webkit-box-align: center;
-//     -ms-flex-align: center;
-//     align-items: center;
-//     display: -webkit-inline-box;
-//     display: -ms-inline-flexbox;
-//     display: inline-flex;
-//     font-size: 24px;
-//     -webkit-box-pack: center;
-//     -ms-flex-pack: center;
-//     justify-content: center;
-//     transition: .3s cubic-bezier(.25,.8,.25,1);
-//     vertical-align: middle;
-// }
 .custom-icon {
   opacity: 0.54;
   width: 21px;
