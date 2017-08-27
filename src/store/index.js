@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import Character from '../components/pages/characters/Character'
 Vue.use(Vuex)
 
 // Create the main data store for our app
@@ -11,13 +11,15 @@ const store = new Vuex.Store({
     characters: undefined,
     characterId: window.localStorage.getItem('characterId'),
     character: undefined,
-    gameData: {}
+    gameData: {},
+    uid: undefined
   },
 
   // Mutations
   mutations: {
     update_user (state, user) {
       state.user = user
+      state.uid = user.uid
     },
 
     set_character (state, payload) {
@@ -35,7 +37,8 @@ const store = new Vuex.Store({
     select_character (state, id) {
       state.characterId = id
       window.localStorage.setItem('characterId', id)
-      state.character = state.characters[id]
+      state.character = new Character(state.characters[id])
+      // state.character = state.characters[id]
     },
 
     update_races (state, races) {

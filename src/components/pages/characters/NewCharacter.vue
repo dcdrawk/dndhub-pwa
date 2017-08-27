@@ -77,7 +77,6 @@ export default {
     async create () {
       try {
         const valid = await this.$validator.validate()
-        console.log(valid)
         if (!valid) return
         for (var i in this.character) {
           if (this.character[i] === undefined) delete this.characters[i]

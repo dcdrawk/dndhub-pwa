@@ -10,6 +10,10 @@ import Profile from '@/components/pages/auth/Profile'
 import CharacterList from '@/components/pages/characters/CharacterList'
 import NewCharacter from '@/components/pages/characters/NewCharacter'
 
+// Details
+import General from '@/components/pages/details/General'
+import Race from '@/components/pages/details/Race'
+
 Vue.use(Router)
 
 export default new Router({
@@ -38,6 +42,14 @@ export default new Router({
       path: '/characters/new',
       name: 'New Character',
       component: NewCharacter
+    }, {
+      path: '/details/general',
+      name: 'General',
+      component: General
+    }, {
+      path: '/details/race',
+      name: 'Race',
+      component: Race
     }
   ]
 })
