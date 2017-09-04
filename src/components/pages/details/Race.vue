@@ -8,9 +8,9 @@
         :character="character"
       ></race-fields> -->
 
-      <race-details
-      ></race-details>
+      <race-details></race-details>
     </v-card-text>
+    <race-traits></race-traits>
   </v-card>
   <!-- </div> -->
 </template>
@@ -23,6 +23,7 @@
  */
 import RaceFields from '../characters/RaceFields'
 import RaceDetails from './RaceDetails'
+import RaceTraits from './RaceTraits'
 export default {
   // Name
   name: 'general',
@@ -30,7 +31,8 @@ export default {
   // Components
   components: {
     RaceFields,
-    RaceDetails
+    RaceDetails,
+    RaceTraits
   },
 
   // Props

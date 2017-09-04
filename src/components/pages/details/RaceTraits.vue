@@ -1,47 +1,23 @@
 <template>
   <v-layout row wrap v-if="character">
-    <!-- Subheader -->
-    <h3 class="subheader ma-0 pl-1 pa-0">
-      Race Details
-    </h3>
 
-    <!-- Race -->
-    <v-flex xs12>
-      <custom-select
-        ref="race"
-        label="Race"
-        :items="races"
-        item-text="name"
-        item-value="name"
-        :custom="character.custom.race"
-        :value="character.race"
-        @input="character.setRace(getRace($event))"
-        @customize="character.customize('race')"
-      ></custom-select>
-
-      <v-text-field
-        class="pb-0"
-        label="Ability Score Increase"
-        :value="character.abilityScoreIncrease"
-      ></v-text-field>
-      <v-text-field
-        class="pb-0"
-        label="Speed"
-        :value="character.speed"
-        @input="character.update('speed', $event)"
-      ></v-text-field>
-      <v-text-field
-        class="pb-0"
-        label="Languages"
-        :value="character.languages"
-      ></v-text-field>
-    </v-flex>
-
-    <h3 class="subheader ma-0 pl-1 pa-0">
+    <!-- <h3 class="subheader ma-0 pl-1 pa-0">
       Race Traits
-    </h3>
+    </h3> -->
     <!-- Subrace -->
     <v-flex xs12>
+      <v-list two-line>
+        <v-list-tile
+          v-for="(item, index) in character.traits"
+          :key="index"
+        >
+          <v-list-tile-content>
+            <v-list-tile-title v-html="item.title"></v-list-tile-title>
+            <v-list-tile-sub-title v-html="item.description"></v-list-tile-sub-title>
+          </v-list-tile-content>
+        </v-list-tile>
+      </v-list>
+
       <!-- <v-expansion-panel expand>
         <v-expansion-panel-content
           v-for="(item, index) in character.traits"

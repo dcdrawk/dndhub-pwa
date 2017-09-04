@@ -40,22 +40,9 @@ export default class Character {
    * @param {Any} value
    */
   update (field, value) {
+    console.log('update', this)
     Vue.set(this, field, value)
     if (this.savable) this.save(field, value)
-  }
-
-  /**
-   * Set Race
-   * @desc Sets a character's race
-   * @param {String} field
-   * @param {Any} value
-   */
-  setRace (race) {
-    this.update('race', race.name)
-    Vue.set(this, 'abilityScoreIncrease', race.abilityScoreIncrease)
-    Vue.set(this, 'speed', race.speed)
-    Vue.set(this, 'languages', race.languages)
-    Vue.set(this, 'traits', race.traits)
   }
 
   /**
@@ -70,8 +57,25 @@ export default class Character {
     const cid = Store.state.characterId
     const update = {}
     update[field] = value
+    console.log(update)
+    console.log(`characters/${uid}/${cid}`)
     Firebase.database().ref(`characters/${uid}/${cid}`)
       .update(update)
+  }
+
+  /**
+   * Set Race
+   * @desc Sets a character's race
+   * @param {String} field
+   * @param {Any} value
+   */
+  setRace (race) {
+    // console.log()
+    this.update('race', race.name)
+    Vue.set(this, 'abilityScoreIncrease', race.abilityScoreIncrease)
+    Vue.set(this, 'speed', race.speed)
+    Vue.set(this, 'languages', race.languages)
+    Vue.set(this, 'traits', race.traits)
   }
 
   /**

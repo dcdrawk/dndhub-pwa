@@ -9,6 +9,13 @@ export default {
   // Name
   name: 'characters',
 
+  // Data
+  data () {
+    return {
+      init: false
+    }
+  },
+
   // Computed
   computed: {
     user () { return this.$store.state.user },
@@ -33,7 +40,8 @@ export default {
       if (!this.user) return
       this.$db.ref(`characters/${this.user.uid}`).on('value', (snapshot) => {
         this.$store.commit('update_characters', snapshot.val())
-        if (this.characterId) {
+        if (this.characterId && !this.init) {
+          this.init = true
           this.selectCharacter(this.characterId)
         }
       })
@@ -41,7 +49,6 @@ export default {
 
     /**
      * Select Character
-     * @desc Stop editing
      */
     selectCharacter (id) {
       this.$store.commit('select_character', id)
