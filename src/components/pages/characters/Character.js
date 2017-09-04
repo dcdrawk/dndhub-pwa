@@ -40,9 +40,24 @@ export default class Character {
    * @param {Any} value
    */
   update (field, value) {
-    console.log('update', this)
     Vue.set(this, field, value)
     if (this.savable) this.save(field, value)
+  }
+
+  /**
+   * Update / Save Multiple Fields at once
+   * @param {Array} fields
+   */
+  updateMultiple (fields) {
+    const uid = Store.state.uid
+    const cid = Store.state.characterId
+    fields.forEach(item => {
+      Vue.set(this, item.field, item.value)
+      const update = {}
+      update[item.field] = item.value
+      Firebase.database().ref(`characters/${uid}/${cid}`)
+        .update(update)
+    })
   }
 
   /**
@@ -70,12 +85,22 @@ export default class Character {
    * @param {Any} value
    */
   setRace (race) {
-    // console.log()
-    this.update('race', race.name)
-    Vue.set(this, 'abilityScoreIncrease', race.abilityScoreIncrease)
-    Vue.set(this, 'speed', race.speed)
-    Vue.set(this, 'languages', race.languages)
-    Vue.set(this, 'traits', race.traits)
+    this.updateMultiple([{
+      field: 'race',
+      value: race.name
+    }, {
+      field: 'abilityScoreIncrease',
+      value: race.abilityScoreIncrease
+    }, {
+      field: 'speed',
+      value: race.speed
+    }, {
+      field: 'languages',
+      value: race.languages
+    }, {
+      field: 'traits',
+      value: race.traits
+    }])
   }
 
   /**

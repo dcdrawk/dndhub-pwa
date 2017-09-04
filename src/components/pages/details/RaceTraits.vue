@@ -5,6 +5,7 @@
       Race Traits
     </h3> -->
     <!-- Subrace -->
+    <!-- {{ character.traits || 'dsadad' }} -->
     <v-flex xs12>
       <v-list two-line>
         <v-list-tile

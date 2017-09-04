@@ -1,5 +1,5 @@
 <template>
-  <div class="flexbox">
+  <div class="d-flex">
     <!-- Select -->
     <v-text-field
       bottom
@@ -26,7 +26,7 @@
 
     <!-- Edit / Cancel Button -->
     <v-btn
-      icon class="mb-0 mt-3"
+      icon class="mb-0 mt-3 edit-button"
       :disabled="disabled"
       @click="customize()"
     >
@@ -82,4 +82,7 @@ export default {
 </script>
 
 <style scoped lang="scss">
+.edit-button {
+  flex: 0 1 auto;
+}
 </style>

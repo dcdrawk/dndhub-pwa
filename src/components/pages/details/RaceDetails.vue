@@ -1,5 +1,6 @@
 <template>
   <v-layout row wrap v-if="character">
+
     <!-- Subheader -->
     <h3 class="subheader ma-0 pl-1 pa-0">
       Race Details
@@ -92,6 +93,12 @@ export default {
   // Props
   props: {
     // character: Object
+  },
+
+  data () {
+    return {
+      active: null
+    }
   },
 
   // Computed

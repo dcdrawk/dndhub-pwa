@@ -13,6 +13,7 @@ import NewCharacter from '@/components/pages/characters/NewCharacter'
 // Details
 import General from '@/components/pages/details/General'
 import Race from '@/components/pages/details/Race'
+import ClassDetails from '@/components/pages/details/ClassDetails'
 
 Vue.use(Router)
 
@@ -50,6 +51,10 @@ export default new Router({
       path: '/details/race',
       name: 'Race',
       component: Race
+    }, {
+      path: '/details/class',
+      name: 'Class',
+      component: ClassDetails
     }
   ]
 })
