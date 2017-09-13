@@ -6,7 +6,7 @@
       v-if="!custom"
       class="pb-0"
       :label="label"
-      :disabled="disabled || readOnly"
+      :readonly="!custom"
       :type="type"
       :value="value"
       @input="$emit('input', $event)"

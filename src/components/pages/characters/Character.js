@@ -27,7 +27,7 @@ export default class Character {
     // this.armor = options.armor || []
     // this.spells = options.spells || []
     // this.inventory = options.inventory || []
-    this.save = Debounce(this.save, 500)
+    this.save = Debounce(this.save, 250)
     this.abilityScores = options.abilityScores || abilityScoreTemplate
     this.custom = options.custom || {}
     if (options) this.savable = true
@@ -51,6 +51,7 @@ export default class Character {
   updateMultiple (fields) {
     const uid = Store.state.uid
     const cid = Store.state.characterId
+    console.log('update multiple...')
     fields.forEach(item => {
       Vue.set(this, item.field, item.value)
       const update = {}
@@ -93,17 +94,38 @@ export default class Character {
       value: ''
     }, {
       field: 'abilityScoreIncrease',
-      value: race.abilityScoreIncrease
+      value: race.abilityScoreIncrease || ''
     }, {
       field: 'speed',
-      value: race.speed
+      value: race.speed || ''
     }, {
       field: 'languages',
-      value: race.languages
+      value: race.languages || ''
     }, {
       field: 'traits',
-      value: race.traits
+      value: race.traits || ''
     }])
+  }
+
+  /**
+   * Set Subrace
+   * @desc Sets a character's subrace, and related fields
+   * @param {String} field
+   * @param {Any} value
+   */
+  setSubrace (race, subrace) {
+    if (!subrace || !race) return
+    if (subrace.abilityScoreIncrease) {
+      this.updateMultiple([{
+        field: 'abilityScoreIncrease',
+        value: `${race.abilityScoreIncrease}, ${subrace.abilityScoreIncrease}`
+      }, {
+        field: 'subrace',
+        value: subrace.name
+      }])
+    } else {
+      this.update('subrace', subrace.name)
+    }
   }
 
   /**

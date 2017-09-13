@@ -25,6 +25,14 @@ const Races = {
           return this.races[i]
         }
       }
+    },
+
+    getSubrace (name) {
+      for (let i in this.subraces) {
+        if (name === this.subraces[i].name) {
+          return this.subraces[i]
+        }
+      }
     }
   }
 }

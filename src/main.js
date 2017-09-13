@@ -11,6 +11,7 @@ import Validation from './validation'
 import EventBus from './event-bus'
 
 Vue.config.productionTip = false
+console.dir(Vuetify)
 Vue.use(Vuetify)
 Vue.use(Firebase)
 Vue.use(Validation)
