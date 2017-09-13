@@ -2,9 +2,9 @@
   <v-layout row wrap v-if="character">
 
     <!-- Subheader -->
-    <h3 class="subheader ma-0 pl-1 pa-0">
+    <!-- <h3 class="title mt-2 pl-1">
       Race Details
-    </h3>
+    </h3> -->
 
     <!-- Race -->
     <v-flex xs12>
@@ -18,6 +18,18 @@
         :value="character.race"
         @input="character.setRace(getRace($event))"
         @customize="character.customize('race')"
+      ></custom-select>
+
+      <custom-select
+        ref="race"
+        label="Subrace"
+        :items="subraces"
+        item-text="name"
+        item-value="name"
+        :custom="character.custom.subrace"
+        :value="character.subrace"
+        @input="character.update('subrace', $event)"
+        @customize="character.customize('subrace')"
       ></custom-select>
 
       <v-text-field
@@ -38,9 +50,7 @@
       ></v-text-field>
     </v-flex>
 
-    <h3 class="subheader ma-0 pl-1 pa-0">
-      Race Traits
-    </h3>
+
     <!-- Subrace -->
     <v-flex xs12>
       <!-- <v-expansion-panel expand>
@@ -105,6 +115,16 @@ export default {
   computed: {
     character () {
       return this.$store.state.character
+    },
+    subraces () {
+      const race = this.character.race
+      if (race) {
+        for (let i in this.races) {
+          if (race === this.races[i].name) {
+            return this.races[i].subraces
+          }
+        }
+      }
     }
     // races () {
     //   return this.$store.state.gameData.races

@@ -1,18 +1,24 @@
 <template>
-  <v-card>
+  <div v-if="character">
+    <v-card class="mb-4">
 
-  <!-- <div v-if="character"> -->
-    <v-card-text>
+      <v-card-text>
 
-      <!-- <race-fields
-        :character="character"
-      ></race-fields> -->
+        <!-- <race-fields
+          :character="character"
+        ></race-fields> -->
 
-      <race-details></race-details>
-    </v-card-text>
-    <race-traits></race-traits>
-  </v-card>
-  <!-- </div> -->
+        <race-details></race-details>
+      </v-card-text>
+
+    </v-card>
+
+    <v-card>
+      <v-card-text>
+        <race-traits></race-traits>
+      </v-card-text>
+    </v-card>
+  </div>
 </template>
 
 <script>

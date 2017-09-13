@@ -80,7 +80,7 @@ export default class Character {
 
   /**
    * Set Race
-   * @desc Sets a character's race
+   * @desc Sets a character's race, and related fields
    * @param {String} field
    * @param {Any} value
    */
@@ -88,6 +88,9 @@ export default class Character {
     this.updateMultiple([{
       field: 'race',
       value: race.name
+    }, {
+      field: 'subrace',
+      value: ''
     }, {
       field: 'abilityScoreIncrease',
       value: race.abilityScoreIncrease

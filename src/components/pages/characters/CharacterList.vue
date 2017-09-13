@@ -18,14 +18,15 @@
         >
           <!-- List tile actions -->
           <v-list-tile-action>
-            <v-radio
-              class="ml-2"
-              primary
-              v-model="characterId"
-              :value="index"
-              :ripple="false"
-              @click.prevent="selectCharacter(index)"
-            ></v-radio>
+            <v-radio-group v-model="characterId" :mandatory="false">
+              <v-radio
+                class="ml-2"
+                primary
+                :value="index"
+                :ripple="false"
+                @click.prevent="selectCharacter(index)"
+              ></v-radio>
+            </v-radio-group>
           </v-list-tile-action>
 
           <!-- List tile content -->

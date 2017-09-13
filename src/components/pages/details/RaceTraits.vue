@@ -1,6 +1,8 @@
 <template>
   <v-layout row wrap v-if="character">
-
+    <h3 class="title mt-2 pl-1 pa-0">
+      Race Traits
+    </h3>
     <!-- <h3 class="subheader ma-0 pl-1 pa-0">
       Race Traits
     </h3> -->
@@ -11,6 +13,8 @@
         <v-list-tile
           v-for="(item, index) in character.traits"
           :key="index"
+          class=""
+          @click=""
         >
           <v-list-tile-content>
             <v-list-tile-title v-html="item.title"></v-list-tile-title>
