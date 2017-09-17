@@ -1,7 +1,4 @@
-const Races = {
-  // created: function () {
-  //   console.log('mixin hook called')
-  // },
+export default {
   computed: {
     races () {
       return this.$store.state.gameData.races
@@ -36,5 +33,3 @@ const Races = {
     }
   }
 }
-
-export default Races

@@ -73,9 +73,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@media screen and (max-width: 480px) {
-  .dnd-container {
-    padding: 0;
+.dnd-container {
+  max-width: 1200px;
+  padding: 0;
+  // @media screen and (max-width: 480px) {}
+  @media screen and (min-width: 480px) {
+    margin-top: 16px;
   }
 }
 </style>
