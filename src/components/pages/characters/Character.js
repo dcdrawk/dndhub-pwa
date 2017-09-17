@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Store from '../../../store'
 import Firebase from 'firebase'
-import Debounce from 'lodash.debounce'
+// import Debounce from 'lodash.debounce'
 /**
  * Character
  */
@@ -22,12 +22,12 @@ export default class Character {
     // this.class = options.class || undefined
     // this.archetype = options.archetype || undefined
     // this.enableMulticlass = options.enableMulticlass || false
-    // this.multiclass = options.multiclass || []
+    this.multiclass = options.multiclass || []
     // this.weapons = options.weapons || []
     // this.armor = options.armor || []
     // this.spells = options.spells || []
     // this.inventory = options.inventory || []
-    this.save = Debounce(this.save, 250)
+    // this.save = Debounce(this.save, 250)
     this.abilityScores = options.abilityScores || abilityScoreTemplate
     this.custom = options.custom || {}
     if (options) this.savable = true
@@ -145,14 +145,23 @@ export default class Character {
    * @param {Boolean} event
    */
   toggleMulticlass (event) {
-    this.enableMulticlass = event
+    // this.enableMulticlass = event
+    console.log('multiclass!', event)
     if (event) {
+      // this.multiclass = []
+      this.update('multiclass', [])
       if (this.multiclass.length === 0) {
+        console.log('multiclass 2!', event)
+        console.log(this.multiclass)
         this.multiclass.push({...multiclassTemplate})
+        this.save('multiclass', this.multiclass)
+        // this.multiclass.push({...multiclassTemplate})
       }
     } else {
       this.multiclass = []
+      this.save('multiclass', this.multiclass)
     }
+    this.update('enableMulticlass', event)
   }
 
   /**
@@ -160,7 +169,9 @@ export default class Character {
    * @desc push a multiclassTemplate to the multiclass array
    */
   addMulticlass () {
+    // this.multiclass.push({...multiclassTemplate})
     this.multiclass.push({...multiclassTemplate})
+    this.save('multiclass', this.multiclass)
   }
 
   /**
@@ -169,6 +180,7 @@ export default class Character {
    */
   removeMulticlass (index) {
     this.multiclass.splice(index, 1)
+    this.save('multiclass', this.multiclass)
   }
 
   /**
@@ -176,7 +188,12 @@ export default class Character {
    * @desc push a multiclassTemplate to the multiclass array
    */
   updateMulticlass (index, field, value) {
+    if (value === this.multiclass[index][field]) return
     this.multiclass[index][field] = value
+    if (field === 'name') {
+      this.multiclass[index].archetype = ''
+    }
+    this.update('multiclass', this.multiclass)
   }
 
   /**
@@ -193,10 +210,10 @@ export default class Character {
 }
 
 const multiclassTemplate = {
-  name: undefined,
+  name: '',
   level: 1,
-  archetype: undefined,
-  specialization: undefined,
+  archetype: '',
+  specialization: '',
   custom: {
     name: false,
     archetype: false,

@@ -15,12 +15,12 @@ export default {
     },
     archetypeOptions () {
       if (!this.archetypes) return
-      if (this.character.level < this.archetypes.level) return
+      // if (this.character.level < this.archetypes.level) return
       return this.archetypes.options
     },
     archetypeLabel () {
       if (!this.archetypes) return
-      if (this.character.level < this.archetypes.level) return
+      // if (this.character.level < this.archetypes.level) return
       return this.archetypes.name
     }
   },
@@ -36,17 +36,15 @@ export default {
       }
     },
 
-    getArchetypeOptions (className) {
+    getArchetypeOptions (className, level) {
       const archetypes = this.getArchetypes(className)
       if (!archetypes) return
-      if (this.character.level < archetypes.level) return
       return archetypes.options
     },
 
     getArchetypeLabel (className) {
       const archetypes = this.getArchetypes(className)
       if (!archetypes) return
-      if (this.character.level < archetypes.level) return
       return archetypes.name
     }
   }

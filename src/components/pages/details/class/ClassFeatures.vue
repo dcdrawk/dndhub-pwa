@@ -1,18 +1,22 @@
 <template>
   <div>Component
 
-    {{ character.classFeatures }}
+    <!-- {{ character.classFeatures }} -->
   </div>
 </template>
 
 <script>
+import CustomSelect from '../../../inputs/CustomSelect'
+
 export default {
 
   // Name
   name: 'component',
 
   // Components
-  components: {},
+  components: {
+    CustomSelect
+  },
 
   // Props
   props: {},

@@ -44,6 +44,7 @@ import CustomSelect from '../../inputs/CustomSelect'
 import ClassFeatures from './class/ClassFeatures'
 import ClassHitpoints from './class/ClassHitpoints'
 import ClassProficiencies from './class/ClassProficiencies'
+import ClassInfo from './class/ClassInfo'
 
 export default {
   // Name
@@ -54,7 +55,8 @@ export default {
     CustomSelect,
     ClassFeatures,
     ClassHitpoints,
-    ClassProficiencies
+    ClassProficiencies,
+    ClassInfo
   },
 
   mixins: [Races],
@@ -68,7 +70,10 @@ export default {
     return {
       // tabs: ['Class Features', 'Proficiencies', 'Hit Points'],
       tabs: [{
-        text: 'Class Features',
+        text: 'Class Info',
+        component: 'class-info'
+      }, {
+        text: 'Features',
         component: 'class-features'
       }, {
         text: 'Proficiencies',
@@ -77,7 +82,7 @@ export default {
         text: 'Hit Points',
         component: 'class-hitpoints'
       }],
-      active: 'class-features',
+      active: 'class-info',
       text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'
     }
   },
