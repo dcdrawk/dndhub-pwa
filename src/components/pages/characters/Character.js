@@ -136,7 +136,9 @@ export default class Character {
   customize (field) {
     this[field] = undefined
     const value = !this.custom[field]
-    Vue.set(this.custom, field, value)
+    this.custom[field] = value
+    this.update('custom', this.custom)
+    // Vue.set(this.custom, field, value)
   }
 
   /**

@@ -15,22 +15,37 @@
         item-value="name"
         :custom="character.custom.class"
         :value="character.class"
-        @input="character.update('class', $event)"
-        @customize="$emit('customize', 'class')"
+        @input="setClass($event)"
+        @customize="character.customize('class', $event)"
       ></custom-select>
-
       <custom-select
-        v-if="archetypeOptions"
         ref="archetype"
-        :label="archetypeLabel"
+        :label="archetypeLabel || 'Archetype'"
         :items="archetypeOptions"
         item-text="title"
         item-value="title"
-        :custom="character.custom.archetype"
+        :disabled="!character.class"
+        :custom="character.custom.archetype || character.custom.class"
         :value="character.archetype"
+        :show-action="!character.custom.class || !!character.class"
         @input="character.update('archetype', $event)"
         @customize="$emit('customize', 'archetype')"
       ></custom-select>
+      <custom-select
+        label="Hit Dice"
+        :value="character.hitDice"
+        :custom="character.custom.hitDice"
+        @customize="customizeHitDice($event)"
+        :items="dice"
+        @input="character.update('hitDice', $event)"
+      ></custom-select>
+      <!-- <custom-input
+        label="Hit Dice"
+        :value="character.hitDice"
+        :custom="character.custom.hitDice"
+        @customize="character.customize('hitDice', $event)"
+        @input="character.update('hitDice', $event)"
+      ></custom-input> -->
 
       <v-checkbox
         class="pa-0"
@@ -78,6 +93,7 @@
       ></v-text-field>
 
       <custom-select
+        v-if="item.name"
         :label="getArchetypeLabel(item.name)"
         :items="getArchetypeOptions(item.name)"
         hint-text="test"
@@ -136,7 +152,9 @@ export default {
 
   // Data
   data () {
-    return {}
+    return {
+      dice: ['d4', 'd6', 'd8', 'd10', 'd12', 'd20', 'd100']
+    }
   },
 
   // Computed
@@ -165,6 +183,17 @@ export default {
   methods: {
     myFunction () {
       return 'something'
+    },
+
+    customizeHitDice (value) {
+      this.$nextTick(() => {
+        this.character.customize('hitDice', value)
+        const classObj = this.getClass(this.character.class)
+        this.character.update(
+          'hitDice',
+          classObj ? classObj.hitDice : 'd8'
+        )
+      })
     }
   }
 }

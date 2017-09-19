@@ -1,7 +1,7 @@
 <template>
   <div>
     <v-tabs dark v-model="active" class="elevation-1">
-      <v-tabs-bar class="cyan">
+      <v-tabs-bar class="blue">
         <v-tabs-item
           v-for="(tab, index) in tabs"
           :key="index"
@@ -10,7 +10,7 @@
         >
           {{ tab.text }}
         </v-tabs-item>
-        <v-tabs-slider class="yellow"></v-tabs-slider>
+        <v-tabs-slider class="white"></v-tabs-slider>
       </v-tabs-bar>
       <!-- test -->
       <v-tabs-items>
@@ -28,9 +28,9 @@
       </v-tabs-items>
     </v-tabs>
     <!-- {{ active }} -->
-    <div class="text-xs-center mt-3">
+    <!-- <div class="text-xs-center mt-3">
       <v-btn @click.native="next">next tab</v-btn>
-    </div>
+    </div> -->
   </div>
 </template>
 

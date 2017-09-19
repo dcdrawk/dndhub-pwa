@@ -2,7 +2,7 @@
   "classFeatures": [{
     "class": "Barbarian",
     "type":"classFeature",
-    "archetype": "None",
+    "archetype": "default",
     "abilities": [{
       "title": "Rage",
       "level": "1",
@@ -109,7 +109,7 @@
   }, {
     "class": "Bard",
     "type":"classFeature",
-    "archetype": "None",
+    "archetype": "default",
     "abilities": [{
       "title": "Bardic Inspiration",
       "level": "1",
@@ -196,7 +196,7 @@
   }, {
     "class": "Cleric",
     "type":"classFeature",
-    "archetype": "None",
+    "archetype": "default",
     "abilities": [{
       "title": "Divine Domain",
       "level": "1",
@@ -420,7 +420,7 @@
   }, {
     "class": "Druid",
     "type":"classFeature",
-    "archetype": "None",
+    "archetype": "default",
     "abilities": [{
       "title": "Druidic",
       "level": "1",
@@ -507,7 +507,7 @@
   }, {
     "class": "Fighter",
     "type":"classFeature",
-    "archetype": "None",
+    "archetype": "default",
     "abilities": [{
       "title": "Fighting Style",
       "level": "1",
@@ -637,7 +637,7 @@
     }, {
       "class": "Monk",
       "type":"classFeature",
-      "archetype": "None",
+      "archetype": "default",
       "abilities": [{
         "title": "Unarmored Defence",
         "level": "1",
@@ -852,7 +852,7 @@
   }, {
     "class": "Paladin",
     "type":"classFeature",
-    "archetype": "None",
+    "archetype": "default",
     "abilities": [{
       "title": "Divine Sense",
       "level": "1",
@@ -993,7 +993,7 @@
   }, {
     "class": "Ranger",
     "type":"classFeature",
-    "archetype": "None",
+    "archetype": "default",
     "abilities": [{
       "title": "Favored Enemy",
       "level": "1",
@@ -1182,7 +1182,7 @@
   }, {
     "class": "Rogue",
     "type":"classFeature",
-    "archetype": "None",
+    "archetype": "default",
     "abilities": [{
       "title": "Expertise",
       "level": "1",
@@ -1310,7 +1310,7 @@
   }, {
     "class": "Sorcerer",
     "type":"classFeature",
-    "archetype": "None",
+    "archetype": "default",
     "abilities": [{
       "title": "Sorcerous Origin",
       "level": "1",
@@ -1441,7 +1441,7 @@
   }, {
     "class": "Warlock",
     "type":"classFeature",
-    "archetype": "None",
+    "archetype": "default",
     "abilities": [{
       "title": "Otherworldly Patron",
       "level": "1",
@@ -1689,7 +1689,7 @@
   }, {
     "class": "Wizard",
     "type":"classFeature",
-    "archetype": "None",
+    "archetype": "default",
     "abilities": [{
       "title": "Arcane recovery",
       "level": "1",

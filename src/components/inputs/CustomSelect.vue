@@ -3,7 +3,7 @@
     <!-- Select -->
     <v-select
       bottom
-      v-if="!custom"
+      v-if="!custom && items"
       class="pb-0"
       :label="label"
       :items="items"
@@ -19,6 +19,7 @@
       v-else
       ref="input"
       class="pb-0"
+      :readonly="disabled"
       :name="name"
       :label="label"
       :value="value"
@@ -27,6 +28,7 @@
 
     <!-- Edit / Cancel Button -->
     <v-btn
+      v-if="showAction"
       icon class="mb-0 mt-3 edit-button"
       :disabled="disabled"
       @click="customize()"
@@ -59,7 +61,11 @@ export default {
     custom: Boolean,
     label: String,
     name: String,
-    disabled: Boolean
+    disabled: Boolean,
+    showAction: {
+      type: Boolean,
+      default: true
+    }
   },
 
   // Methods

@@ -13,7 +13,8 @@ export default {
         'races',
         'classes',
         'alignments',
-        'backgrounds'
+        'backgrounds',
+        'classFeatures'
       ],
       // Update the version number if data json is updated.
       // So we can store the json in LocalStorage
@@ -21,7 +22,9 @@ export default {
         races: 1,
         classes: 1,
         alignments: 1,
-        backgrounds: 1
+        backgrounds: 1,
+        classFeatures: 1
+
       }
     }
   },
@@ -51,6 +54,7 @@ export default {
             // Fetch JSON from '/static/data' using Axios
             return Axios.get(`/static/data/${file}.json`).then((response) => {
               const data = response.data[file]
+              console.log(response, data)
               this.$store.commit('update_game_data', {
                 field: file,
                 data: data
