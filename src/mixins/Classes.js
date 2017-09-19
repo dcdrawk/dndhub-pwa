@@ -63,23 +63,31 @@ export default {
       }
     },
 
+    setFeatures (newClass, oldClass) {
+      const features = {...this.character.classFeatures || {}}
+      // const features = {}
+      if (oldClass && features[oldClass]) {
+        delete features[oldClass]
+      }
+      features[newClass] = this.getFeatures(newClass) || []
+      this.character.update('classFeatures', features)
+    },
+
     /**
      * Set Class
      * @desc Sets a character's class, and related fields
      * @param {String} className
      */
     setClass (className) {
+      if (classObj.name === this.character.class) return
+
       const classObj = this.getClass(className)
+      this.setFeatures(classObj.name, this.character.class)
       if (!classObj) {
         this.character.update('class', className)
         return
       }
-      // if (!classObj) return
-      // if (typeof classObj === 'string') {
-      //   this.character.update('class', classObj)
-      //   return
-      // }
-      const features = this.getFeatures(classObj.name)
+
       this.character.updateMultiple([{
         field: 'class',
         value: classObj.name
@@ -95,10 +103,12 @@ export default {
       }, {
         field: 'hitDice',
         value: classObj.hitDice
-      }, {
-        field: 'classFeatures',
-        value: features
       }])
+    },
+
+    setArchetype (archetype) {
+      this.setFeatures(archetype)
+      this.character.update('archetype', archetype)
     },
 
     customizeHitDice (value) {

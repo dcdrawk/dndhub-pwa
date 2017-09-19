@@ -183,17 +183,6 @@ export default {
   methods: {
     myFunction () {
       return 'something'
-    },
-
-    customizeHitDice (value) {
-      this.$nextTick(() => {
-        this.character.customize('hitDice', value)
-        const classObj = this.getClass(this.character.class)
-        this.character.update(
-          'hitDice',
-          classObj ? classObj.hitDice : 'd8'
-        )
-      })
     }
   }
 }
